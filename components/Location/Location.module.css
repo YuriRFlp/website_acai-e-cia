@@ -1,0 +1,61 @@
+.container{
+  padding-top: 4.8em;
+}
+
+.title{
+  color: #571e3e;
+  text-transform: uppercase;
+  margin: 3em 0 1.5em 0;
+  font-size: 24px;
+}
+
+.imgContainer{
+  position: relative;
+  background-image: url(../../public/area-ext.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 450px; 
+}
+
+.flexColumnContainer{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  padding: .5em;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 25%;
+  color: #e67a2a;
+  width: 100%;
+  font-weight: 500;
+}
+
+
+@media screen and (min-width: 36em) {
+  .imgContainer {
+    animation: caroussel 18s ease-out infinite; 
+  }
+}
+
+@keyframes caroussel {
+  25% {
+    background-image: url(../../public/area-ext.jpg); 
+  }
+  33% {
+    background-image: url(../../public/area-int-1.png); 
+  }
+  58% {
+    background-image: url(../../public/area-int-1.png); 
+  }
+  67% {
+    background-image: url(../../public/area-int-2.png); 
+  }
+  92% {
+    background-image: url(../../public/area-int-2.png); 
+  }
+  to {
+    background-image: url(../../public/area-ext.jpg); 
+  } 
+}

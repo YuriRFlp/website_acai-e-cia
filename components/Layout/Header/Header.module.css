@@ -1,0 +1,10 @@
+.header{
+    grid-area: 1/1/2/-1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, mincontent);
+    position: relative;
+    z-index: 999999 !important;
+    position: fixed;
+    width: 100%;
+}

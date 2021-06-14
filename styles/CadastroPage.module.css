@@ -1,0 +1,47 @@
+.title{
+    color: #571e3e;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.phrase:nth-child(2){
+    margin-top: 2em;
+    line-height: 1.5;
+}
+
+.phrase:nth-child(3){
+    display: inline-block;
+    margin-top: 1em;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #e67a2a;
+}
+
+.btn{
+    background-color: #571e3e;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    margin: 5em 0;
+    padding: 1em 0;
+}
+
+.btn:hover{
+    background-color: rgba(87, 30, 62, 0.9);
+}
+
+.btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e;
+}
+
+@media screen and (min-width: 48em){
+    .btn{
+        width: 60%;
+    }
+}

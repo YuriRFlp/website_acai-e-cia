@@ -1,0 +1,16 @@
+.section{
+    /* display: none; */
+    margin: 5em 0;
+    padding-top: 2em;
+}
+
+.subtitle{
+    color: #571e3e;
+    text-transform: uppercase;
+}
+
+.cardsContainer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}

@@ -1,0 +1,64 @@
+.container{
+    grid-area: 1/1/2/-1;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.text{
+    display: none;
+}
+
+.iconsContainer{
+    text-align: end;
+    margin: .5em .5em 0 0;
+}
+
+.iconsLink{
+    font-size: .7em;
+    padding: .5em 1em;
+    margin: .5em 1.5em;
+    color: #571e3e;
+}
+
+.iconslink:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e;
+}
+
+
+@media screen and (min-width: 48em) {
+    .iconsLink{
+        font-size: .7em;
+    }
+}
+
+
+@media screen and (min-width: 64em) {
+    .container{
+        justify-content: space-between;
+    }
+
+    .text{
+        display: inline-block;
+        text-align: left;
+        margin: .5em 0 0 2em;
+    }
+
+    .textLink{
+        margin: 0;
+        padding: .5em;
+        color: #571e3e;
+        text-decoration: underline dotted 1px;
+        transition: font-weight 0.2s linear, text-decoration 0.3 0.5s linear;
+    }
+
+    .textLink:hover{
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .iconsLink{
+        margin: 0 2em;
+    }
+}

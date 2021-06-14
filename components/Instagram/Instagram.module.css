@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 3em;
+    padding-top: 4.8em;
+}
+
+.title{
+    color: #571e3e;
+    text-transform: uppercase;
+    margin: 3em 0 1.5em 0;
+    font-size: 24px;
+}
+
+.instagram{
+    align-self: flex-start;
+    background-color: #571e3e;
+    color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    margin: 0 0 1em 0;
+    font-size: 3vw;
+}
+
+@media screen and (min-width: 48em) {
+    .instagram {
+      font-size: 1.5em; 
+    }
+}

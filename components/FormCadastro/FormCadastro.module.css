@@ -1,0 +1,7 @@
+@media screen and (min-width: 48em){
+    .form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1em;
+    }
+}

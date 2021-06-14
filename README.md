@@ -25,9 +25,10 @@
 <hr>
 
 <h3 id="funcionalidades">⚙️ Funcionalidades</h3>
- <p>Usários podem acessar a página para conhecer a empresa e os produtos oferecidos, e também cadastrarem na plataforma web enviando:</p>
+<p>Usários podem acessar a página para conhecer a empresa e os produtos oferecidos, e também cadastrarem na plataforma web enviando:</p>
 <p>- dados pessoais</p>
 <p>- endereço de entrega para o delivery</p>
+<p>Apenas os usuários cadastrados poderão utilizar o sistema para delivery.</p>
 
 <hr>
 

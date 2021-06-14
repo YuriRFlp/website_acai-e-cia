@@ -1,11 +1,32 @@
+import { useRouter } from 'next/router';
+import Banner from './Banner/Banner';
+import Footer from './Footer/Footer';
 import Header from './Header/Header';
-// div será um container para as páginas
+import classes from './Layout.module.css';
+
 const Layout = (props) => {
+    const router = useRouter();
+    const path = router.pathname;
+
     return (
-        <div>
+        <div className={classes.containerAll}>
             <Header />
-            <main>{props.children}</main>
-            <footer>Açaí &amp; Cia | 2021</footer>
+
+            <main className={classes.mainContent}>
+                {path === '/' && <Banner />}
+
+                <section className={classes.sectionContent}>
+                    {props.children}
+                </section>
+
+                {path === '/' && <Footer />}
+            </main>
+            
+            <div className={classes.bottomBar}>
+                <p className={classes.bottomBarText}>
+                    © {2021} Açaí &amp; Cia. All Rights Reserved. Powered by Açaí &amp; Cia
+                </p>
+            </div>
         </div>
     )
 }

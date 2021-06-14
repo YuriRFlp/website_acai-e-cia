@@ -1,0 +1,22 @@
+.title{
+    color: #571e3e;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.select{
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    background-color: rgba(87, 30, 62, 0.9);
+    color: #fff;
+    padding: .4em;
+    border: none;
+}
+
+.select:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e;
+}

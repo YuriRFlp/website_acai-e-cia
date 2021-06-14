@@ -1,0 +1,26 @@
+.section{
+    margin: 2em 0 6em 0;
+}
+
+.title{
+    color: #571e3e;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.phrase{
+    margin-top: 2em;
+    line-height: 1.5;
+}
+
+.span{
+    font-weight: 600;
+    color: #571e3e;
+}
+
+@media screen and (min-width: 64em){
+    .phrase{
+        width: 60%;
+        margin: 2em auto 0 auto;
+    }
+}
