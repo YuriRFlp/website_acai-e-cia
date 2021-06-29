@@ -4,7 +4,7 @@ import { productsActions } from "../../store";
 import MenuSection from "./MenuSection/MenuSection";
 import classes from './Products.module.css';
 
-const Products = () => {
+const Products = (props) => {
     const dispatch = useDispatch();
     const product = useSelector( state => state.productsReducer.selectedProducts);
     const sectionTitle = useSelector( state => state.productsReducer.sectionTitle);
@@ -15,25 +15,8 @@ const Products = () => {
     }
 
     useEffect(() => {
-        const fetchProductsDataHandler = async () =>  {
-            try{
-                const response = await fetch('https://acai-cia-delivery-default-rtdb.firebaseio.com/produtos.json');
-                const data = await response.json();
-                
-                dispatch(productsActions.fetchedData(data));
-                
-                if(!response.ok){
-                    throw new Error('Requisição de dados incompleta.');
-                }
-
-            } catch (error) {
-                console.log(error.message);
-            }
+        dispatch(productsActions.fetchedData(props.productsData));
             
-        }
-
-        fetchProductsDataHandler();
-
         return () => {
             dispatch(productsActions.cleanUpHandler());
         }

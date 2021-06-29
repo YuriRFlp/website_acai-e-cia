@@ -1,0 +1,30 @@
+.card{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    width: 22em;
+    height: 26.75em;
+    background-color: #e67a2a;
+    border: 2px solid #571e3e;
+    border-radius: 10px;
+    padding: .5em;
+    text-align: left;
+    margin: 2em auto 3em auto;
+}
+
+.cardTitle{
+    grid-area: 1/1/2/4;
+    color: #571e3e;
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.imgCard{
+    grid-area: 1/4/2/5;
+}
+
+@media screen and (max-width: 325px){
+    .card{
+        height: 450px;
+    }
+}

@@ -1,0 +1,99 @@
+.checkboxContainer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background-color: #ececec;
+    z-index: 2;
+    text-align: center;
+    font-size: .7em;
+}
+
+.checkboxContainer input[type='checkbox']{
+    width: .1px;
+    opacity: 0;
+}
+
+.checkboxContainer h4:nth-child(2){
+    margin-top: 16px;
+}
+
+.title{
+    margin: 1em 0 .5em 0;
+}
+
+.title span{
+    display: inline-block;
+    font-size: .8em;
+}
+
+.btnExit{
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    border: none;
+    background-color: transparent;
+    padding: 5px 8px;
+}
+
+.btnExit:focus{
+    outline: none;
+}
+
+.btnExit span{
+    display: inline-block;
+    height: .7em;
+    margin-top: .5em;
+    outline: 2px solid #571e3e;
+}
+
+.firstLine{
+    transform: skew(40deg);
+}
+
+.secondLine{
+    transform: skew(-40deg);
+    margin-right: .5em;
+}
+
+.checkbox{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.checkboxFlexItems{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
+
+.checkboxCustom{
+    display: inline-block;
+    border: 1px solid #571e3e;
+    width: 1.15em;
+    height: 1.15em;
+    border-radius: 2px;
+    margin: auto 5px;
+}
+
+.checkboxContainer input[type="checkbox"]:focus + .checkboxCustom {
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e; 
+}
+
+.checkboxContainer input[type="checkbox"]:checked + .checkboxCustom {
+    box-shadow: none;
+    background-color: #571e3e; 
+}
+
+.checkboxContainer input[type="checkbox"]:checked + .checkboxCustom span {
+    display: inline-block;
+    width: .4em;
+    height: .8em;
+    border: 2px solid #e67a2a;
+    border-top: none;
+    border-left: none;
+    transform: translateY(-1.5px) rotate(42deg); 
+}
