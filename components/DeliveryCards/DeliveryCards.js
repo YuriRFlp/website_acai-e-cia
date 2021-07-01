@@ -35,6 +35,7 @@ const DeliveryCards = (props) => {
             <FormDeliveryCard 
                 sizes={props.cardData.size}
                 prices={props.cardData.value}
+                pathId={props.pathId}
             />
 
             {hasAddOptions && <AddOptions />}

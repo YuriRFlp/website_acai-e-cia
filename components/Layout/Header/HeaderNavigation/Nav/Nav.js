@@ -16,7 +16,7 @@ const Nav = () => {
         <li className={classes.itensList}>
           <Link href="/#introducao">
             <a onClick={toggleMenuHandler} className={classes.itensListLink}>
-              Açaí &amp; Cia
+              <strong>Açaí &amp; Cia</strong>
             </a>
           </Link>
         </li>

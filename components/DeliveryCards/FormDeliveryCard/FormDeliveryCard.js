@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deliveryActions } from '../../../store/index';
 import classes from './FormDeliveryCard.module.css';
@@ -11,6 +12,11 @@ const FormDeliveryCard = (props) => {
     };
 
     dispatch(deliveryActions.setSizesPrice(props.prices));
+
+    useEffect( () => {
+        const textArea = document.querySelector('textarea');
+        textArea.value = '';
+    }, [props.pathId]);
 
     let inputRadioList;
     let inputRadioArr = [];
@@ -46,6 +52,15 @@ const FormDeliveryCard = (props) => {
                 })}
             </div>
 
+            {props.pathId === 'sucos' && 
+                <select className={classes.select}>
+                    <option>Sabores</option>
+                    <option value="acai">Açaí</option>
+                    <option calue="laranja">Laranja</option>
+                    <option value="acai com laranja">Açaí com laranja</option>
+                </select>
+            }
+
             <button 
                 className={classes.multiSelect} 
                 type="button" 
@@ -59,7 +74,7 @@ const FormDeliveryCard = (props) => {
                 name="message" 
                 cols="20" 
                 rows="5" 
-                maxLength="250" 
+                maxLength="500" 
                 placeholder="Escreva uma mensagem caso queira algo específico para o pedido">
             </textarea>
             

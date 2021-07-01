@@ -35,8 +35,8 @@ const AddOptions = () => {
                 <span className={classes.secondLine}></span>
             </button>
 
-            <h4 className={classes.title}>Adicionais inclusos 
-                <span>(Adicionais já incluídos no pedido, desmarquem a opção caso não queiram)</span>
+            <h4 className={classes.title}>Adicionais Inclusos 
+                <span>(Adicionais já incluídos no pedido, <span className={classes.contrast}>desmarquem</span> a opção caso não queiram)</span>
             </h4>
             <IncludedAdds />
 

@@ -19,12 +19,18 @@
 }
 
 .title{
-    margin: 1em 0 .5em 0;
+    margin: 1.1em 3em .5em 3em;
+    font-size: 12px;
 }
 
 .title span{
     display: inline-block;
-    font-size: .8em;
+    font-size: .9em;
+}
+
+.contrast{
+    text-transform: uppercase;
+    color:#e67a2a;
 }
 
 .btnExit{

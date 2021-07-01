@@ -57,13 +57,29 @@
     padding: .5em;
 }
 
+.select{
+    margin: 1em auto;
+    height: 30px;
+    padding-left: .3em;
+    width: 7em;
+    color: #571e3e;
+}
+
+.multiSelect{
+    position: relative;
+    width: 7em;
+    color: #571e3e;
+}
+
 .multiSelect span{
     display: inline-block;
-    height: .6em;
-    width: .6em;
+    position: absolute;
+    right: 5.5px;
+    height: .49em;
+    width: .49em;
     margin: .2em 0 0 .6em;
-    border-bottom: 3px solid #571e3e;
-    border-right: 3px solid #571e3e;
+    border-bottom: 2px solid #571e3e;
+    border-right: 2px solid #571e3e;
     transform: rotate(45deg);
 }
 
@@ -77,12 +93,12 @@
     resize: none;
 }
 
-.multiSelect, .message{
+.multiSelect, .message, .select{
     border: 1px solid #571e3e;
     border-radius: 10px;
 }
 
-.multiSelect:focus, .message:focus{
+.multiSelect:focus, .message:focus, .select:focus{
     outline: none;
     box-shadow: 0 0 0 1px #571e3e;
 }
