@@ -7,7 +7,7 @@ const IncludedAdds = () => {
 
     const updateCardPriceHandler = (event) => {
         let input = event.target;
-        dispatch(deliveryActions.updateAlreadyChecked(input.value));
+        dispatch(deliveryActions.updateAlreadyCheckedAdds(input.value));
     };
 
     return (

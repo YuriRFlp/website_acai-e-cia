@@ -63,6 +63,7 @@
     padding-left: .3em;
     width: 7em;
     color: #571e3e;
+    cursor: pointer;
 }
 
 .multiSelect{
@@ -91,6 +92,10 @@
     padding: .3em;
     z-index: 1;
     resize: none;
+}
+
+.isDisabled{
+    cursor: not-allowed;
 }
 
 .multiSelect, .message, .select{

@@ -13,12 +13,16 @@ const DeliveryCards = (props) => {
         dispatch(deliveryActions.changeShowAddOptions('close'));
         dispatch(deliveryActions.setAddPrice('close'));
         dispatch(deliveryActions.setSizeCheckedPrice('close'));
-        dispatch(deliveryActions.updateAlreadyChecked('close'));
+        dispatch(deliveryActions.updateAlreadyCheckedAdds('close'));
+
+        if(props.pathId === 'barcas'){
+            dispatch(deliveryActions.updateAlreadyCheckedAdds('barcas'));
+        }
         return () => {
             dispatch(deliveryActions.changeShowAddOptions('close'));
             dispatch(deliveryActions.setAddPrice('close'));
             dispatch(deliveryActions.setSizeCheckedPrice('close'));
-            dispatch(deliveryActions.updateAlreadyChecked('close'));
+            dispatch(deliveryActions.updateAlreadyCheckedAdds('close'));
         }
     }, [props.pathId]);
 
@@ -38,7 +42,7 @@ const DeliveryCards = (props) => {
                 pathId={props.pathId}
             />
 
-            {hasAddOptions && <AddOptions />}
+            {hasAddOptions && <AddOptions pathId={props.pathId} />}
         </div>
     )
 }

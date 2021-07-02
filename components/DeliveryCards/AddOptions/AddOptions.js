@@ -6,19 +6,14 @@ import Adds_3 from './Adds_3';
 import classes from './AddOptions.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deliveryActions } from '../../../store/index';
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 
-const AddOptions = () => {
+const AddOptions = (props) => {
     const dispatch = useDispatch();
     const addOptionsChecked = useSelector(state => state.deliveryReducer.alreadyChecked);
 
-    const showAddOptionsHandler = () => {
-        dispatch(deliveryActions.changeShowAddOptions());
-    };
-
-    useEffect(() => {
+    useEffect( () => {
         let inputList = document.getElementsByClassName('inputCheckbox');
-
         for (let input of inputList) {
             addOptionsChecked.forEach( value => {
                 if(value === input.value){
@@ -26,7 +21,11 @@ const AddOptions = () => {
                 }
             });
         }
-    }, []);
+    }, [])
+
+    const showAddOptionsHandler = () => {
+        dispatch(deliveryActions.changeShowAddOptions());
+    };
 
     return(
         <div className={classes.checkboxContainer}>
@@ -35,13 +34,17 @@ const AddOptions = () => {
                 <span className={classes.secondLine}></span>
             </button>
 
-            <h4 className={classes.title}>Adicionais Inclusos 
-                <span>(Adicionais já incluídos no pedido, <span className={classes.contrast}>desmarquem</span> a opção caso não queiram)</span>
-            </h4>
-            <IncludedAdds />
+            {props.pathId !== 'barcas' && 
+                <Fragment>
+                    <h4 className={classes.title}>Adicionais Inclusos 
+                        <span>(Adicionais já incluídos no pedido, <span className={classes.contrast}>desmarquem</span> a opção caso não queiram)</span>
+                    </h4>
+                    <IncludedAdds />
+                </Fragment>
+            }
 
             <h4 className={classes.title}>Adicionais - R$ 1,50</h4>
-            <Adds_1e50 />
+            <Adds_1e50 pathId={props.pathId} />
 
             <h4 className={classes.title}>Adicionais - R$ 2,00</h4>
             <Adds_2 />

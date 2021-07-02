@@ -7,6 +7,7 @@ const initialState = {
     cardPrice: 0,
     alreadyChecked: ["banana", "granola", "leite em pó"], 
     sizesPrice: [],
+    isDisabled: null
 };
 
 const deliverySlice = createSlice({
@@ -21,9 +22,11 @@ const deliverySlice = createSlice({
             }
         },
 
-        updateAlreadyChecked(state, action) {
+        updateAlreadyCheckedAdds(state, action) {
             if(action.payload === 'close'){
                 state.alreadyChecked = ["banana", "granola", "leite em pó"];
+            } else if(action.payload === 'barcas'){
+                state.alreadyChecked = [];
             } else if(state.alreadyChecked.length > 0) {
                 let valueChecked = state.alreadyChecked.find( value => {
                     return value === action.payload;
@@ -86,6 +89,15 @@ const deliverySlice = createSlice({
             }
             
             state.cardPrice = state.sizeCheckedPrice + state.addPrice;
+        },
+
+        setIsDisabled(state, action) {
+            if(action.payload === 'barcas' && state.cardPrice === 0){
+                state.isDisabled = true;
+            } else {
+                state.isDisabled = false; 
+            }
+                // state.isDisabled = (action.payload === 'barcas' && state.cardPrice === 0) ? true : false;
         }
     }
 })

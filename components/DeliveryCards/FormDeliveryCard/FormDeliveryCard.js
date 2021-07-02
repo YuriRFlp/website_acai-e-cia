@@ -6,17 +6,13 @@ import classes from './FormDeliveryCard.module.css';
 const FormDeliveryCard = (props) => {
     const dispatch = useDispatch();
     const cardPrice = useSelector(state => state.deliveryReducer.cardPrice);
-
+    const isDisabled = useSelector(state => state.deliveryReducer.isDisabled);
+    
     const showAddOptionsHandler = () => {
         dispatch(deliveryActions.changeShowAddOptions());
     };
 
     dispatch(deliveryActions.setSizesPrice(props.prices));
-
-    useEffect( () => {
-        const textArea = document.querySelector('textarea');
-        textArea.value = '';
-    }, [props.pathId]);
 
     let inputRadioList;
     let inputRadioArr = [];
@@ -24,13 +20,21 @@ const FormDeliveryCard = (props) => {
         const radioChecked = event.target;
         inputRadioList = document.getElementsByTagName('input');
         for (let inputRadio of inputRadioList) {
-            inputRadioArr.push(inputRadio.value)
+            inputRadioArr.push(inputRadio)
         };
         let radioCheckedIndex = inputRadioArr.findIndex( input => {
-            return input === radioChecked.value;
+            return input.value === radioChecked.value;
         });
         dispatch(deliveryActions.setSizeCheckedPrice(radioCheckedIndex));
+        dispatch(deliveryActions.setIsDisabled(props.pathId));
     }
+
+    useEffect( () => {
+        const textArea = document.querySelector('textarea');
+        textArea.value = '';
+
+        dispatch(deliveryActions.setIsDisabled(props.pathId));
+    }, [props.pathId]);
 
     return(
         <form className={classes.form}>
@@ -62,15 +66,16 @@ const FormDeliveryCard = (props) => {
             }
 
             <button 
-                className={classes.multiSelect} 
+                className={`${classes.multiSelect} ${props.pathId === 'barcas' && cardPrice === 0 && classes.isDisabled}`}
                 type="button" 
-                onClick={showAddOptionsHandler}>
+                onClick={showAddOptionsHandler}
+                disabled={isDisabled}>
                     Adicionais
                     <span></span>
             </button>
 
             <textarea 
-                className={classes.message} 
+                className={classes.message}
                 name="message" 
                 cols="20" 
                 rows="5" 

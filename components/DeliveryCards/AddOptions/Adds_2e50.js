@@ -14,7 +14,7 @@ const Adds_2e50 = () => {
         dispatch(deliveryActions.setAddPrice(-2.5));
         }
 
-        dispatch(deliveryActions.updateAlreadyChecked(input.value));
+        dispatch(deliveryActions.updateAlreadyCheckedAdds(input.value));
     };
 
     return (

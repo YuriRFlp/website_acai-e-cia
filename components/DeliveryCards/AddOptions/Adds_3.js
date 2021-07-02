@@ -14,7 +14,7 @@ const Adds_3 = () => {
         dispatch(deliveryActions.setAddPrice(-3));
         }
 
-        dispatch(deliveryActions.updateAlreadyChecked(input.value));
+        dispatch(deliveryActions.updateAlreadyCheckedAdds(input.value));
     };
 
     return (
