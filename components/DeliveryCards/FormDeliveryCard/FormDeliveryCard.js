@@ -1,15 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deliveryActions } from '../../../store/index';
+import { deliveryActions, menuOptionsActions } from '../../../store';
 import classes from './FormDeliveryCard.module.css';
 
 const FormDeliveryCard = (props) => {
     const dispatch = useDispatch();
     const cardPrice = useSelector(state => state.deliveryReducer.cardPrice);
     const isDisabled = useSelector(state => state.deliveryReducer.isDisabled);
+    const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule);
     
     const showAddOptionsHandler = () => {
         dispatch(deliveryActions.changeShowAddOptions());
+    };
+
+    const showIceCreamMenuHandler = () => {
+        dispatch(menuOptionsActions.renderIceCreamMenu());
     };
 
     dispatch(deliveryActions.setSizesPrice(props.prices));
@@ -26,6 +31,10 @@ const FormDeliveryCard = (props) => {
             return input.value === radioChecked.value;
         });
         dispatch(deliveryActions.setSizeCheckedPrice(radioCheckedIndex));
+        if(props.pathId === 'barcas') {
+            dispatch(deliveryActions.setAddOptionsRule(radioCheckedIndex));
+            dispatch(menuOptionsActions.updateIceCreamAlreadyChecked('close'));
+        }
         dispatch(deliveryActions.setIsDisabled(props.pathId));
     }
 
@@ -39,7 +48,7 @@ const FormDeliveryCard = (props) => {
     return(
         <form className={classes.form}>
             <div className={classes.size}>
-                <p>Tamanho:</p>
+                <p className={classes.label}>Tamanho:</p>
                 {props.sizes.map( size => {
                     return (
                         <label key={size}>
@@ -60,13 +69,23 @@ const FormDeliveryCard = (props) => {
                 <select className={classes.select}>
                     <option>Sabores</option>
                     <option value="acai">Açaí</option>
-                    <option calue="laranja">Laranja</option>
+                    <option value="laranja">Laranja</option>
                     <option value="acai com laranja">Açaí com laranja</option>
                 </select>
             }
 
+            {props.pathId === 'barcas' && addBarcasRule === 'Prêmio' &&
+                <button 
+                    className={classes.btnIceCream}
+                    type="button" 
+                    onClick={showIceCreamMenuHandler}>
+                        Sorvetes
+                        <span></span>
+                </button>
+            }
+
             <button 
-                className={`${classes.multiSelect} ${props.pathId === 'barcas' && cardPrice === 0 && classes.isDisabled}`}
+                className={`${classes.btnAdd} ${props.pathId === 'barcas' && cardPrice === 0 && classes.isDisabled}`}
                 type="button" 
                 onClick={showAddOptionsHandler}
                 disabled={isDisabled}>
@@ -74,14 +93,15 @@ const FormDeliveryCard = (props) => {
                     <span></span>
             </button>
 
-            <textarea 
-                className={classes.message}
-                name="message" 
-                cols="20" 
-                rows="5" 
-                maxLength="500" 
-                placeholder="Escreva uma mensagem caso queira algo específico para o pedido">
-            </textarea>
+            <div className={classes.messageContainer}>
+                <p className={classes.label}>Detalhes do Pedido:</p>
+                <textarea
+                    className={classes.message}
+                    name="message"  
+                    maxLength="500" 
+                    placeholder="Escreva aqui uma mensagem caso queira algo específico para o seu pedido">
+                </textarea>
+            </div>
             
             <p className={classes.price}>
                 Preço: 

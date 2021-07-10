@@ -1,7 +1,6 @@
 .containerDeliveryMenu{
     display: flex;
     flex-flow: column;
-    justify-content: center;
     background-color: #571e3ef6;
     color: #fff;
     border-radius: 10px;
@@ -40,12 +39,10 @@
 @media screen and (min-width: 730px){
     .containerDeliveryMenu{
         display: block;
-        position: absolute;
-        top: 1.75%;
-        left: 1%;
         width: 13em;
-        height: 96.5%;
+        height: 456px;
         margin-top: 0;
+        margin: auto 0;
     }
 
     .list{
@@ -64,5 +61,11 @@
 
     .subtitle{
         margin: 1.8em auto;
+    }
+}
+
+@media screen and (min-width: 730px) and (max-width: 789px) {
+    .editBorder{
+        border-radius: 10px 0 0 10px;
     }
 }

@@ -8,13 +8,15 @@ const CardPage = (props) => {
     const cardId = route.query.cardId;
 
     return(
-        <section className={classes.flexContainer}>
+        <section className={classes.flexColumnContainer}>
             <h1 className={classes.title}>Monte seu pedido</h1>
-            <DeliveryMenu />
-            <DeliveryCards 
-                cardData={props.data}
-                pathId={cardId}
-            />   
+            <div className={classes.flexRowContainer}>
+                <DeliveryMenu />
+                <DeliveryCards 
+                    cardData={props.data}
+                    pathId={cardId}
+                />
+            </div> 
         </section>
     )
 }
@@ -45,7 +47,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const response = await fetch(`https://acai-cia-delivery-default-rtdb.firebaseio.com/delivery/card-${params.cardId}.json`);
     const data = await response.json();
-
+    
     return {
         props: {data}
     }

@@ -7,7 +7,8 @@ const initialState = {
     cardPrice: 0,
     alreadyChecked: ["banana", "granola", "leite em pó"], 
     sizesPrice: [],
-    isDisabled: null
+    isDisabled: null,
+    addBarcasRule: ''
 };
 
 const deliverySlice = createSlice({
@@ -27,21 +28,33 @@ const deliverySlice = createSlice({
                 state.alreadyChecked = ["banana", "granola", "leite em pó"];
             } else if(action.payload === 'barcas'){
                 state.alreadyChecked = [];
-            } else if(state.alreadyChecked.length > 0) {
+            }
+
+            if(state.alreadyChecked.length > 0) {
                 let valueChecked = state.alreadyChecked.find( value => {
-                    return value === action.payload;
+                    return value === action.payload.value;
                 });
                 
                 if(!!valueChecked){
                     let valueCheckedIndex = state.alreadyChecked.findIndex( value => {
-                        return value === action.payload;
+                        return value === action.payload.value;
                     });
                     state.alreadyChecked.splice(valueCheckedIndex, 1);
                 } else {
-                    state.alreadyChecked.push(action.payload);
+                    state.alreadyChecked.push(action.payload.value);
                 }
             } else {
-                state.alreadyChecked.push(action.payload);
+                state.alreadyChecked.push(action.payload.value);
+            }
+
+            if(action.payload.path === 'barcas'){
+                if(state.addBarcasRule === '1/2 kg'){
+                    state.alreadyChecked.splice(4);
+                } else if(state.addBarcasRule == '1 kg') {
+                    state.alreadyChecked.splice(8);
+                } else {
+                    state.alreadyChecked.splice(6);
+                }
             }
         },
 
@@ -97,7 +110,19 @@ const deliverySlice = createSlice({
             } else {
                 state.isDisabled = false; 
             }
-                // state.isDisabled = (action.payload === 'barcas' && state.cardPrice === 0) ? true : false;
+        },
+
+        setAddOptionsRule(state, action) {
+            state.alreadyChecked = [];
+            state.addPrice = 0;
+            state.cardPrice = state.sizeCheckedPrice + state.addPrice;
+            if(action.payload === 0){
+                state.addBarcasRule = '1/2 kg';
+            } else if(action.payload === 1){
+                state.addBarcasRule = '1 kg';
+            } else{
+                state.addBarcasRule = 'Prêmio';
+            }
         }
     }
 })

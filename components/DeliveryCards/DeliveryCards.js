@@ -1,28 +1,32 @@
 import FormDeliveryCard from './FormDeliveryCard/FormDeliveryCard';
 import AddOptions from './AddOptions/AddOptions';
+import IceCreamOptions from './IceCreamOptions/IceCreamOptions';
 import classes from './DeliveryCards.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { deliveryActions } from '../../store';
+import { deliveryActions, menuOptionsActions } from '../../store';
 
 const DeliveryCards = (props) => {
     const dispatch = useDispatch();
     const hasAddOptions = useSelector(state => state.deliveryReducer.showAddOptions);
+    const hasIceCreamMenu = useSelector(state => state.menuOptionsReducer.showIceCreamMenu);
 
     useEffect(() => {
         dispatch(deliveryActions.changeShowAddOptions('close'));
         dispatch(deliveryActions.setAddPrice('close'));
         dispatch(deliveryActions.setSizeCheckedPrice('close'));
         dispatch(deliveryActions.updateAlreadyCheckedAdds('close'));
+        dispatch(menuOptionsActions.updateIceCreamAlreadyChecked('close'));
 
         if(props.pathId === 'barcas'){
-            dispatch(deliveryActions.updateAlreadyCheckedAdds('barcas'));
+            dispatch(deliveryActions.updateAlreadyCheckedAdds(props.pathId));
         }
         return () => {
             dispatch(deliveryActions.changeShowAddOptions('close'));
             dispatch(deliveryActions.setAddPrice('close'));
             dispatch(deliveryActions.setSizeCheckedPrice('close'));
             dispatch(deliveryActions.updateAlreadyCheckedAdds('close'));
+            dispatch(menuOptionsActions.updateIceCreamAlreadyChecked('close'));
         }
     }, [props.pathId]);
 
@@ -43,6 +47,7 @@ const DeliveryCards = (props) => {
             />
 
             {hasAddOptions && <AddOptions pathId={props.pathId} />}
+            {hasIceCreamMenu && <IceCreamOptions />}
         </div>
     )
 }

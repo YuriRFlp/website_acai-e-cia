@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {selectedSection: '', sectionTitle: '', selectedProducts: [], productsData: null};
+const initialState = {
+    selectedSection: '', 
+    sectionTitle: '', 
+    selectedProducts: [], 
+    productsData: null
+};
 
 const productsSlice = createSlice({
     name: 'products',

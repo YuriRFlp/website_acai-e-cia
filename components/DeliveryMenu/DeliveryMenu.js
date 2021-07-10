@@ -3,7 +3,7 @@ import classes from './DeliveryMenu.module.css';
 
 const DeliveryMenu = () => {
     return(
-        <div className={classes.containerDeliveryMenu}>
+        <div className={`${classes.containerDeliveryMenu} ${classes.editBorder}`}>
             <h4 className={classes.subtitle}>Produtos</h4>
 
             <ul className={classes.list}>

@@ -29,10 +29,11 @@
     color: #fff;
 }
 
-.size p{
+.label{
     margin-top: 0;
     margin-bottom: .5em;
     font-weight: 500;
+    color: #fff;
 }
 
 .size label{
@@ -48,8 +49,16 @@
     margin: auto 5px auto -7px;
 }
 
-.multiSelect{
+.btnAdd{
     grid-area: 2/1/3/2;
+    display: flex;
+    flex-flow: row nowrap;
+    cursor: pointer;
+    margin-top: auto;
+    padding: .5em;
+}
+
+.btnIceCream{
     display: flex;
     flex-flow: row nowrap;
     cursor: pointer;
@@ -66,13 +75,13 @@
     cursor: pointer;
 }
 
-.multiSelect{
+.btnAdd, .btnIceCream{
     position: relative;
     width: 7em;
     color: #571e3e;
 }
 
-.multiSelect span{
+.btnAdd span, .btnIceCream span{
     display: inline-block;
     position: absolute;
     right: 5.5px;
@@ -84,26 +93,32 @@
     transform: rotate(45deg);
 }
 
-.message{
+.messageContainer{
     grid-area: 1/2/4/-1;
+    z-index: 1;
+    width: 250px;
+    height: 180px;
+}
+
+.message{
     text-align: justify;
     font-size: .8em;
-    margin-top: .5em;
-    padding: .3em;
-    z-index: 1;
     resize: none;
+    width: 250px;
+    height: 180px;
+    padding: 5px;
 }
 
 .isDisabled{
     cursor: not-allowed;
 }
 
-.multiSelect, .message, .select{
+.btnAdd, .btnIceCream, .message, .select{
     border: 1px solid #571e3e;
     border-radius: 10px;
 }
 
-.multiSelect:focus, .message:focus, .select:focus{
+.btnAdd:focus, .btnIceCream:focus, .message:focus, .select:focus{
     outline: none;
     box-shadow: 0 0 0 1px #571e3e;
 }

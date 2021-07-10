@@ -7,6 +7,7 @@
     z-index: 2;
     text-align: center;
     font-size: .7em;
+    color: #571e3e;
 }
 
 .checkboxContainer input[type='checkbox']{
@@ -26,6 +27,13 @@
 .title span{
     display: inline-block;
     font-size: .9em;
+}
+
+.text{
+    display: inline-block;
+    width: 65%;
+    text-align: left;
+    margin-top: 0;
 }
 
 .contrast{
@@ -102,4 +110,10 @@
     border-top: none;
     border-left: none;
     transform: translateY(-1.5px) rotate(42deg); 
+}
+
+@media screen and (min-width: 730px) and (max-width: 789px) {
+    .checkboxContainer{
+        border-radius: 0 8px 8px 0;
+    }
 }

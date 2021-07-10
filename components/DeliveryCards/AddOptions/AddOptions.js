@@ -47,13 +47,13 @@ const AddOptions = (props) => {
             <Adds_1e50 pathId={props.pathId} />
 
             <h4 className={classes.title}>Adicionais - R$ 2,00</h4>
-            <Adds_2 />
+            <Adds_2 pathId={props.pathId} />
 
             <h4 className={classes.title}>Adicionais - R$ 2,50</h4>
-            <Adds_2e50 />
+            <Adds_2e50 pathId={props.pathId} />
 
             <h4 className={classes.title}>Adicionais - R$ 3,00</h4>
-            <Adds_3 />
+            <Adds_3 pathId={props.pathId} />
         </div>
     )
 }

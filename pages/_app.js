@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
-        <title>Home | Açaí &amp; Cia</title>
+        <title>Açaí &amp; Cia</title>
         <meta name="description" content="Bem vindo à lanchonete Açaí&Cia! Confira nosso cardápio e esteja sempre por dentro de nossas promoções e novidades."></meta>
         <meta name="keywords" content="Açaí&Cia, açaí, lanchonete, Rio Acima, lanches"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>

@@ -15,7 +15,6 @@ const IncludedAdds = () => {
             <label>
                 <input
                     type="checkbox"
-                    name="add inclusos"
                     value="banana"
                     onClick={updateCardPriceHandler}
                     className='inputCheckbox'
@@ -29,7 +28,6 @@ const IncludedAdds = () => {
             <label>
                 <input
                     type="checkbox"
-                    name="add inclusos"
                     value="granola"
                     onClick={updateCardPriceHandler}
                     className='inputCheckbox'
@@ -43,7 +41,6 @@ const IncludedAdds = () => {
             <label>
                 <input
                     type="checkbox"
-                    name="add inclusos"
                     value="leite em pó"
                     onClick={updateCardPriceHandler}
                     className='inputCheckbox'

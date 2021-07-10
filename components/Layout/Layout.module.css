@@ -8,13 +8,13 @@
 .mainContent{
     grid-area: 2/1/3/-1;
     display: grid;
-    margin-top: 111.09px;
+    margin-top: 79.5px;
     position: relative;
 }
 
 .sectionContent{
     width: 95vw;
-    margin: 0 auto;
+    margin: 3em auto 0 auto;
 }
 
 .bottomBar{
@@ -43,17 +43,12 @@
 
 @media screen and (min-width: 48em) {
     .mainContent {
-      margin-top: 126.19px;
+      margin-top: 94.59px;
     } 
 }
 
 
 @media screen and (min-width: 64em) {
-
-    .mainContent{
-        margin-top: 148.84px;
-    }
-
     .sectionContent{
         width: 885px;
     }

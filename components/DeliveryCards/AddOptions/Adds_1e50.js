@@ -1,32 +1,64 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deliveryActions } from "../../../store";
-import { Fragment } from "react";
 import classes from "./AddOptions.module.css";
 
 const Adds_1e50 = (props) => {
   const dispatch = useDispatch();
+  const addList = useSelector(state => state.deliveryReducer.alreadyChecked);
+  const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule); 
+
+  let maxAdd;
 
   const updateCardPriceHandler = (event) => {
-    let input = event.target;
+    const input = event.target;
 
-    if (input.checked) {
-      dispatch(deliveryActions.setAddPrice(1.5));
-    } else {
-      dispatch(deliveryActions.setAddPrice(-1.5));
+    dispatch(deliveryActions.updateAlreadyCheckedAdds({value: input.value, path: props.pathId}));
+   
+    if(props.pathId === 'barcas'){
+      if ((addBarcasRule === '1/2 kg' && addList.length > 3 ) || (addBarcasRule === '1 kg' && addList.length > 7) || (addBarcasRule === 'Prêmio' && addList.length > 5)){
+        if(input.checked  === false){
+          dispatch(deliveryActions.setAddPrice(-1.5));
+        }
+        input.checked = false;
+        return;
+      }
+
+      switch (addBarcasRule) {
+        case '1/2 kg':
+          maxAdd = 4;
+          break;
+        case '1 kg':
+          maxAdd = 8;
+          break;
+        case 'Prêmio':
+          maxAdd = 6;
+          break;
+      };
+      
+      if (input.checked) {
+        dispatch(deliveryActions.setAddPrice(1.5));
+      } else {
+        if(addList.length < maxAdd){
+          dispatch(deliveryActions.setAddPrice(-1.5));
+        }
+      }
+      
+    } else{
+      if (input.checked) {
+        dispatch(deliveryActions.setAddPrice(1.5));
+      } else {
+        dispatch(deliveryActions.setAddPrice(-1.5));
+      }
     }
-
-    dispatch(deliveryActions.updateAlreadyCheckedAdds(input.value));
   };
 
   return (
     <div className={classes.checkbox}>
       <div className={classes.checkboxFlexItems}>
         {props.pathId === 'barcas' &&
-          <Fragment>
             <label>
               <input
                   type="checkbox"
-                  name="add inclusos"
                   value="banana"
                   onClick={updateCardPriceHandler}
                   className='inputCheckbox'
@@ -36,41 +68,11 @@ const Adds_1e50 = (props) => {
               </span>
               Banana
             </label>
-
-            <label>
-              <input
-                  type="checkbox"
-                  name="add inclusos"
-                  value="granola"
-                  onClick={updateCardPriceHandler}
-                  className='inputCheckbox'
-              ></input>
-              <span className={classes.checkboxCustom}>
-                  <span></span>
-              </span>
-              Granola
-            </label>
-
-            <label>
-              <input
-                  type="checkbox"
-                  name="add inclusos"
-                  value="leite em pó"
-                  onClick={updateCardPriceHandler}
-                  className='inputCheckbox'
-              ></input>
-              <span className={classes.checkboxCustom}>
-                  <span></span>
-              </span>
-              Leite em pó
-            </label>
-          </Fragment>
         }
 
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
             value="mel"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -84,7 +86,6 @@ const Adds_1e50 = (props) => {
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
             value="bis"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -95,41 +96,9 @@ const Adds_1e50 = (props) => {
           Bis
         </label>
 
-      </div>
-
-      <div className={classes.checkboxFlexItems}>
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
-            value="manga"
-            onClick={updateCardPriceHandler}
-            className='inputCheckbox'
-          ></input>
-          <span className={classes.checkboxCustom}>
-            <span></span>
-          </span>
-          Manga
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            name="add - 1,50"
-            value="chocoball"
-            onClick={updateCardPriceHandler}
-            className='inputCheckbox'
-          ></input>
-          <span className={classes.checkboxCustom}>
-            <span></span>
-          </span>
-          Chocoball
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            name="add - 1,50"
             value="paçoca"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -143,7 +112,6 @@ const Adds_1e50 = (props) => {
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
             value="sucrilhos"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -154,10 +122,53 @@ const Adds_1e50 = (props) => {
           Sucrilhos
         </label>
 
+      </div>
+
+      <div className={classes.checkboxFlexItems}>
+        {props.pathId === 'barcas' &&
+            <label>
+              <input
+                  type="checkbox"
+                  value="granola"
+                  onClick={updateCardPriceHandler}
+                  className='inputCheckbox'
+              ></input>
+              <span className={classes.checkboxCustom}>
+                  <span></span>
+              </span>
+              Granola
+            </label>
+        }
+
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
+            value="manga"
+            onClick={updateCardPriceHandler}
+            className='inputCheckbox'
+          ></input>
+          <span className={classes.checkboxCustom}>
+            <span></span>
+          </span>
+          Manga
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            value="chocoball"
+            onClick={updateCardPriceHandler}
+            className='inputCheckbox'
+          ></input>
+          <span className={classes.checkboxCustom}>
+            <span></span>
+          </span>
+          Chocoball
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
             value="confete"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -168,13 +179,40 @@ const Adds_1e50 = (props) => {
           Confete
         </label>
 
-      </div>
-
-      <div className={classes.checkboxFlexItems}>
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
+            value="cobertura morango"
+            onClick={updateCardPriceHandler}
+            className='inputCheckbox'
+          ></input>
+          <span className={classes.checkboxCustom}>
+            <span></span>
+          </span>
+          Cobertura de morango
+        </label>
+
+      </div>
+
+      <div className={classes.checkboxFlexItems}>
+        {props.pathId === 'barcas' &&
+            <label>
+              <input
+                  type="checkbox"
+                  value="leite em pó"
+                  onClick={updateCardPriceHandler}
+                  className='inputCheckbox'
+              ></input>
+              <span className={classes.checkboxCustom}>
+                  <span></span>
+              </span>
+              Leite em pó
+            </label>
+        }
+
+        <label>
+          <input
+            type="checkbox"
             value="abacaxi"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -188,7 +226,6 @@ const Adds_1e50 = (props) => {
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
             value="leite condensado"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -202,7 +239,6 @@ const Adds_1e50 = (props) => {
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
             value="batom"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -216,7 +252,6 @@ const Adds_1e50 = (props) => {
         <label>
           <input
             type="checkbox"
-            name="add - 1,50"
             value="cobertura chocolate"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
@@ -226,21 +261,6 @@ const Adds_1e50 = (props) => {
           </span>
           Cobertura de chocolate
         </label>
-
-        <label>
-          <input
-            type="checkbox"
-            name="add - 1,50"
-            value="cobertura morango"
-            onClick={updateCardPriceHandler}
-            className='inputCheckbox'
-          ></input>
-          <span className={classes.checkboxCustom}>
-            <span></span>
-          </span>
-          Cobertura de morango
-        </label>
-
       </div>
     </div>
   );
