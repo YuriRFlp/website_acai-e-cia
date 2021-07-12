@@ -2,12 +2,12 @@ import { useDispatch } from "react-redux";
 import { deliveryActions } from "../../../store";
 import classes from "./AddOptions.module.css";
 
-const IncludedAdds = () => {
+const IncludedAdds = (props) => {
     const dispatch = useDispatch();
 
     const updateCardPriceHandler = (event) => {
         let input = event.target;
-        dispatch(deliveryActions.updateAlreadyCheckedAdds(input.value));
+        dispatch(deliveryActions.updateAlreadyCheckedAdds({value: input.value, path: props.pathId}));
     };
 
     return (

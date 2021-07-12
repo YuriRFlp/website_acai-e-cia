@@ -8,14 +8,7 @@ const IceCreamOptions = () => {
     const iceCreamChecked = useSelector(state => state.menuOptionsReducer.iceCreamAlreadyChecked);
     
     useEffect( () => {
-        let inputList = document.getElementsByClassName('inputCheckbox');
-        for (let input of inputList) {
-            iceCreamChecked.forEach( value => {
-                if(value === input.value){
-                    input.checked = true;
-                }
-            });
-        }
+        dispatch(menuOptionsActions.setAlreadyCheckedIceCreams());
     }, []);
 
     const updateIceCreamsCheckedHandler = (event) => {
@@ -25,9 +18,7 @@ const IceCreamOptions = () => {
             input.checked = false;
             dispatch(menuOptionsActions.updateIceCreamAlreadyChecked(input.value));
         }
-        
-        console.log(iceCreamChecked)
-    }
+    };
 
     const showIceCreamMenuHandler = () => {
         dispatch(menuOptionsActions.renderIceCreamMenu());

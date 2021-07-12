@@ -4,27 +4,19 @@ import Adds_2 from './Adds_2';
 import Adds_2e50 from './Adds_2e50';
 import Adds_3 from './Adds_3';
 import classes from './AddOptions.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deliveryActions } from '../../../store/index';
 import { useEffect, Fragment } from 'react';
 
 const AddOptions = (props) => {
     const dispatch = useDispatch();
-    const addOptionsChecked = useSelector(state => state.deliveryReducer.alreadyChecked);
 
     useEffect( () => {
-        let inputList = document.getElementsByClassName('inputCheckbox');
-        for (let input of inputList) {
-            addOptionsChecked.forEach( value => {
-                if(value === input.value){
-                    input.checked = true;
-                }
-            });
-        }
+        dispatch(deliveryActions.setAlreadyCheckedAdds());
     }, [])
 
     const showAddOptionsHandler = () => {
-        dispatch(deliveryActions.changeShowAddOptions());
+        dispatch(deliveryActions.renderAddOptions());
     };
 
     return(
@@ -39,7 +31,7 @@ const AddOptions = (props) => {
                     <h4 className={classes.title}>Adicionais Inclusos 
                         <span>(Adicionais já incluídos no pedido, <span className={classes.contrast}>desmarquem</span> a opção caso não queiram)</span>
                     </h4>
-                    <IncludedAdds />
+                    <IncludedAdds pathId={props.pathId} />
                 </Fragment>
             }
 

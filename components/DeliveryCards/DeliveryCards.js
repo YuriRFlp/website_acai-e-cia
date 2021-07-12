@@ -12,21 +12,10 @@ const DeliveryCards = (props) => {
     const hasIceCreamMenu = useSelector(state => state.menuOptionsReducer.showIceCreamMenu);
 
     useEffect(() => {
-        dispatch(deliveryActions.changeShowAddOptions('close'));
-        dispatch(deliveryActions.setAddPrice('close'));
-        dispatch(deliveryActions.setSizeCheckedPrice('close'));
-        dispatch(deliveryActions.updateAlreadyCheckedAdds('close'));
-        dispatch(menuOptionsActions.updateIceCreamAlreadyChecked('close'));
-
+        dispatch(deliveryActions.resetCard());
         if(props.pathId === 'barcas'){
-            dispatch(deliveryActions.updateAlreadyCheckedAdds(props.pathId));
-        }
-        return () => {
-            dispatch(deliveryActions.changeShowAddOptions('close'));
-            dispatch(deliveryActions.setAddPrice('close'));
-            dispatch(deliveryActions.setSizeCheckedPrice('close'));
-            dispatch(deliveryActions.updateAlreadyCheckedAdds('close'));
-            dispatch(menuOptionsActions.updateIceCreamAlreadyChecked('close'));
+            dispatch(menuOptionsActions.resetCard());
+            dispatch(deliveryActions.resetCard(props.pathId));
         }
     }, [props.pathId]);
 

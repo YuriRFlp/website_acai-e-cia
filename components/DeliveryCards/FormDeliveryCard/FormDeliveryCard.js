@@ -8,40 +8,34 @@ const FormDeliveryCard = (props) => {
     const cardPrice = useSelector(state => state.deliveryReducer.cardPrice);
     const isDisabled = useSelector(state => state.deliveryReducer.isDisabled);
     const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule);
+    const description = useSelector(state => state.deliveryReducer.descriptionOrder);
     
     const showAddOptionsHandler = () => {
-        dispatch(deliveryActions.changeShowAddOptions());
+        dispatch(deliveryActions.renderAddOptions());
     };
 
     const showIceCreamMenuHandler = () => {
         dispatch(menuOptionsActions.renderIceCreamMenu());
     };
 
-    dispatch(deliveryActions.setSizesPrice(props.prices));
-
-    let inputRadioList;
-    let inputRadioArr = [];
-    const getInputRadioChecked = (event) => {
+    const inputRadioChecked = (event) => {
         const radioChecked = event.target;
-        inputRadioList = document.getElementsByTagName('input');
-        for (let inputRadio of inputRadioList) {
-            inputRadioArr.push(inputRadio)
-        };
-        let radioCheckedIndex = inputRadioArr.findIndex( input => {
-            return input.value === radioChecked.value;
-        });
-        dispatch(deliveryActions.setSizeCheckedPrice(radioCheckedIndex));
+        dispatch(deliveryActions.setInputRadioIndex(radioChecked.value));
+        dispatch(deliveryActions.setSizeCheckedPrice());
         if(props.pathId === 'barcas') {
-            dispatch(deliveryActions.setAddOptionsRule(radioCheckedIndex));
-            dispatch(menuOptionsActions.updateIceCreamAlreadyChecked('close'));
+            dispatch(deliveryActions.setAddOptionsRule());
+            dispatch(menuOptionsActions.resetCard());
         }
         dispatch(deliveryActions.setIsDisabled(props.pathId));
     }
 
-    useEffect( () => {
-        const textArea = document.querySelector('textarea');
-        textArea.value = '';
+    const textareaHandler = (event) => {
+        const textarea = event.target;
+        dispatch(deliveryActions.setDescriptionOrder(textarea.value));
+    };
 
+    useEffect( () => {
+        dispatch(deliveryActions.setSizesPrice(props.prices));
         dispatch(deliveryActions.setIsDisabled(props.pathId));
     }, [props.pathId]);
 
@@ -56,7 +50,7 @@ const FormDeliveryCard = (props) => {
                                 type="radio" 
                                 name="size" 
                                 value={size}
-                                onClick={getInputRadioChecked}
+                                onClick={inputRadioChecked}
                             ></input>
                             <span className={classes.radioCustom}></span>
                             {size}
@@ -99,7 +93,10 @@ const FormDeliveryCard = (props) => {
                     className={classes.message}
                     name="message"  
                     maxLength="500" 
-                    placeholder="Escreva aqui uma mensagem caso queira algo específico para o seu pedido">
+                    placeholder="Escreva aqui uma mensagem caso queira algo específico para o seu pedido"
+                    onChange={textareaHandler}
+                    value={description}   
+                >
                 </textarea>
             </div>
             

@@ -18,27 +18,38 @@ const menuOptions = createSlice({
         },
 
         updateIceCreamAlreadyChecked(state, action) {
-            if(action.payload === 'close'){
-                state.iceCreamAlreadyChecked = [];
-            } else {
-                if(state.iceCreamAlreadyChecked.length > 0) {
-                    let valueChecked = state.iceCreamAlreadyChecked.find( value => {
+            if(state.iceCreamAlreadyChecked.length > 0) {
+                let valueChecked = state.iceCreamAlreadyChecked.find( value => {
+                    return value === action.payload;
+                });
+                
+                if(!!valueChecked){
+                    let valueCheckedIndex = state.iceCreamAlreadyChecked.findIndex( value => {
                         return value === action.payload;
                     });
-                    
-                    if(!!valueChecked){
-                        let valueCheckedIndex = state.iceCreamAlreadyChecked.findIndex( value => {
-                            return value === action.payload;
-                        });
-                        state.iceCreamAlreadyChecked.splice(valueCheckedIndex, 1);
-                    } else {
-                        state.iceCreamAlreadyChecked.push(action.payload);
-                    }
+                    state.iceCreamAlreadyChecked.splice(valueCheckedIndex, 1);
                 } else {
                     state.iceCreamAlreadyChecked.push(action.payload);
                 }
+            } else {
+                state.iceCreamAlreadyChecked.push(action.payload);
             }
         },
+
+        setAlreadyCheckedIceCreams(state){
+            let inputList = document.getElementsByClassName('inputCheckbox');
+            for (let input of inputList) {
+                state.iceCreamAlreadyChecked.forEach( value => {
+                    if(value === input.value){
+                        input.checked = true;
+                    }
+                });
+            }
+        },
+
+        resetCard(state){
+            state.iceCreamAlreadyChecked = [];
+        }
     }
 });
 
