@@ -6,10 +6,10 @@ const DeliveryPage = () => {
 
     return(
         <Fragment>
+            <h1 className={classes.title}>Monte seu pedido</h1>
             <div className={classes.flexRowContainer}>
                 <DeliveryMenu />
                 <section className={`${classes.flexColumnContainer} ${classes.margin}`}>
-                    <h1 className={classes.title}>Monte seu pedido</h1>
                     <p className={classes.text}>
                         1- Selecione o tipo do produto
                     </p>

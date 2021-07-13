@@ -11,7 +11,8 @@ const initialState = {
     sizesPrice: [],
     isDisabled: null,
     addBarcasRule: '',
-    descriptionOrder: ''
+    descriptionOrder: '',
+    showSubmenu: false
 };
 
 const deliverySlice = createSlice({
@@ -150,6 +151,10 @@ const deliverySlice = createSlice({
             state.addPrice = 0;
             state.cardPrice = state.sizeCheckedPrice + state.addPrice;
             state.descriptionOrder = '';
+        },
+
+        renderDeliverySubmenu(state){
+            state.showSubmenu = !state.showSubmenu;
         }
     }
 })

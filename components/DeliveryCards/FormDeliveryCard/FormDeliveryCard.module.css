@@ -23,7 +23,7 @@
 }
 
 .size{
-    grid-area: 1/1/2/-1;
+    grid-area: 1/1/2/2;
     display: flex;
     flex-flow: column;
     color: #fff;
@@ -95,16 +95,15 @@
 
 .messageContainer{
     grid-area: 1/2/4/-1;
+    display: flex;
     z-index: 1;
-    width: 250px;
-    height: 180px;
+    flex-flow: column;
 }
 
 .message{
     text-align: justify;
     font-size: .8em;
     resize: none;
-    width: 250px;
     height: 180px;
     padding: 5px;
 }

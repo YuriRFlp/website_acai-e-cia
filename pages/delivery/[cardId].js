@@ -6,7 +6,7 @@ import classes from '../../styles/DeliveryPage.module.css';
 const CardPage = (props) => {
     const route = useRouter();
     const cardId = route.query.cardId;
-
+    
     return(
         <section className={classes.flexColumnContainer}>
             <h1 className={classes.title}>Monte seu pedido</h1>
