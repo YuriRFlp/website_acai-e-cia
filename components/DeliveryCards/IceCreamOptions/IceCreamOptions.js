@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 
 const IceCreamOptions = () => {
     const dispatch = useDispatch();
-    const iceCreamChecked = useSelector(state => state.menuOptionsReducer.iceCreamAlreadyChecked);
+    const iceCreamChecked = useSelector(state => state.menuOptionsReducer.iceCreamAlreadyChecked)
+    console.log(iceCreamChecked)
     
     useEffect( () => {
         dispatch(menuOptionsActions.setAlreadyCheckedIceCreams());

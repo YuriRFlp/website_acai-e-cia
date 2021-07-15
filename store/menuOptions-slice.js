@@ -24,9 +24,7 @@ const menuOptions = createSlice({
                 });
                 
                 if(!!valueChecked){
-                    let valueCheckedIndex = state.iceCreamAlreadyChecked.findIndex( value => {
-                        return value === action.payload;
-                    });
+                    let valueCheckedIndex = state.iceCreamAlreadyChecked.indexOf(valueChecked);
                     state.iceCreamAlreadyChecked.splice(valueCheckedIndex, 1);
                 } else {
                     state.iceCreamAlreadyChecked.push(action.payload);

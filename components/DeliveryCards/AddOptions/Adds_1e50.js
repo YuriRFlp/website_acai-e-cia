@@ -5,7 +5,7 @@ import classes from "./AddOptions.module.css";
 const Adds_1e50 = (props) => {
   const dispatch = useDispatch();
   const addList = useSelector(state => state.deliveryReducer.alreadyCheckedAdds);
-  const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule); 
+  const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule);
 
   const updateCardPriceHandler = (event) => {
     const input = event.target;

@@ -30,9 +30,7 @@ const deliverySlice = createSlice({
                 });
                 
                 if(!!valueChecked){
-                    let valueCheckedIndex = state.alreadyCheckedAdds.findIndex( value => {
-                        return value === action.payload.value;
-                    });
+                    let valueCheckedIndex = state.alreadyCheckedAdds.indexOf(valueChecked);
                     state.alreadyCheckedAdds.splice(valueCheckedIndex, 1);
                 } else {
                     state.alreadyCheckedAdds.push(action.payload.value);
