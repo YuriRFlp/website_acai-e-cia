@@ -12,10 +12,11 @@ const DeliveryCards = (props) => {
     const hasIceCreamMenu = useSelector(state => state.menuOptionsReducer.showIceCreamMenu);
 
     useEffect(() => {
-        dispatch(deliveryActions.resetCard());
         if(props.pathId === 'barcas'){
             dispatch(menuOptionsActions.resetCard());
             dispatch(deliveryActions.resetCard(props.pathId));
+        } else {
+            dispatch(deliveryActions.resetCard());
         }
     }, [props.pathId]);
 

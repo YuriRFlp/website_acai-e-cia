@@ -5,6 +5,10 @@
     grid-column-gap: 1em;
 }
 
+.formCustom{
+    grid-template-rows: 171px auto auto;
+}
+
 .form input[type='radio']{
     box-shadow: none;
     width: .1px;
@@ -58,11 +62,13 @@
     padding: .5em;
 }
 
+
 .btnIceCream{
     display: flex;
     flex-flow: row nowrap;
     cursor: pointer;
     margin-top: auto;
+    margin-bottom: 1.7em;
     padding: .5em;
 }
 

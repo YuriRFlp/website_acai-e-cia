@@ -40,24 +40,27 @@ const FormDeliveryCard = (props) => {
     }, [props.pathId]);
 
     return(
-        <form className={classes.form}>
-            <div className={classes.size}>
-                <p className={classes.label}>Tamanho:</p>
-                {props.sizes.map( size => {
-                    return (
-                        <label key={size}>
-                            <input
-                                type="radio" 
-                                name="size" 
-                                value={size}
-                                onClick={inputRadioChecked}
-                            ></input>
-                            <span className={classes.radioCustom}></span>
-                            {size}
-                        </label>
-                    )
-                })}
-            </div>
+        <form className={`${classes.form} ${(props.pathId === 'cremes' || props.pathId === 'vitaminas' || props.pathId === 'sucos' || props.pathId === 'barcas') ? '' : classes.formCustom}`}>
+            {(props.pathId === 'cremes' || props.pathId === 'vitaminas' || props.pathId === 'sucos' || props.pathId === 'barcas') &&
+                <div className={classes.size}>
+                    <p className={classes.label}>Tamanho:</p>
+                    {props.sizes.map( size => {
+                        return (
+                            <label key={size}>
+                                <input
+                                    type="radio" 
+                                    name="size" 
+                                    value={size}
+                                    onClick={inputRadioChecked}
+                                ></input>
+                                <span className={classes.radioCustom}></span>
+                                {size}
+                            </label>
+                        )
+                        })
+                    }  
+                </div>
+            }
 
             {props.pathId === 'sucos' && 
                 <select className={classes.select}>

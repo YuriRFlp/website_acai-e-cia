@@ -142,6 +142,7 @@ const deliverySlice = createSlice({
             state.showAddOptions = false;
             if(action.payload === 'barcas'){
                 state.alreadyCheckedAdds = [];
+                state.addBarcasRule = '';
             } else {
                 state.alreadyCheckedAdds = ["banana", "granola", "leite em pó"];
             }

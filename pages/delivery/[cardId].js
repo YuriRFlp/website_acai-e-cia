@@ -38,14 +38,40 @@ export async function getStaticPaths() {
             },
             {
                 params: {cardId: "barcas"}
-            }
+            },
+            {
+                params: {cardId: "banana-split"}
+            },
+            {
+                params: {cardId: "cestinha"}
+            },
+            {
+                params: {cardId: "divino"}
+            },
+            {
+                params: {cardId: "duplex"}
+            },
+            {
+                params: {cardId: "kids"}
+            },
+            {
+                params: {cardId: "mix"}
+            },
+            {
+                params: {cardId: "roleta"}
+            },
         ]
     };
 };
 
 
 export async function getStaticProps({ params }) {
-    const response = await fetch(`https://acai-cia-delivery-default-rtdb.firebaseio.com/delivery/card-${params.cardId}.json`);
+    let response;
+    if (params.cardId === 'cremes' || params.cardId === 'vitaminas' || params.cardId === 'sucos' || params.cardId === 'barcas') {
+        response = await fetch(`https://acai-cia-delivery-default-rtdb.firebaseio.com/delivery/card-${params.cardId}.json`);
+    } else {
+        response = await fetch(`https://acai-cia-delivery-default-rtdb.firebaseio.com/delivery/cards-exclusivos/${params.cardId}.json`);
+    }
     const data = await response.json();
     
     return {
