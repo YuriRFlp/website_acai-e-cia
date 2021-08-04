@@ -4,19 +4,19 @@ import IceCreamOptions from './IceCreamOptions/IceCreamOptions';
 import classes from './DeliveryCards.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { deliveryActions, menuOptionsActions } from '../../store';
+import { deliveryActions, iceCreamOptionsActions } from '../../store';
 
 const DeliveryCards = (props) => {
     const dispatch = useDispatch();
     const hasAddOptions = useSelector(state => state.deliveryReducer.showAddOptions);
-    const hasIceCreamMenu = useSelector(state => state.menuOptionsReducer.showIceCreamMenu);
+    const hasIceCreamMenu = useSelector(state => state.iceCreamOptionsReducer.showIceCreamMenu);
 
     useEffect(() => {
-        if(props.pathId === 'barcas'){
-            dispatch(menuOptionsActions.resetCard());
+        if(props.pathId === 'barcas' || props.pathId === 'divino'){
+            dispatch(iceCreamOptionsActions.resetCard());
             dispatch(deliveryActions.resetCard(props.pathId));
         } else {
-            dispatch(deliveryActions.resetCard());
+            dispatch(deliveryActions.resetCard(props.pathId));
         }
     }, [props.pathId]);
 
@@ -33,11 +33,12 @@ const DeliveryCards = (props) => {
             <FormDeliveryCard 
                 sizes={props.cardData.size}
                 prices={props.cardData.value}
+                title={props.cardData.title}
                 pathId={props.pathId}
             />
 
             {hasAddOptions && <AddOptions pathId={props.pathId} />}
-            {hasIceCreamMenu && <IceCreamOptions />}
+            {hasIceCreamMenu && <IceCreamOptions pathId={props.pathId} />}
         </div>
     )
 }

@@ -8,10 +8,11 @@ const initialState = {
     sizeCheckedPrice: 0,  
     cardPrice: 0,
     alreadyCheckedAdds: ["banana", "granola", "leite em pó"], 
-    sizesPrice: [],
+    sizesPrice: null,
     isDisabled: null,
     addBarcasRule: '',
     descriptionOrder: '',
+    flavor: '',
     showSubmenu: false
 };
 
@@ -40,14 +41,23 @@ const deliverySlice = createSlice({
             }
 
             if(action.payload.path === 'barcas'){
-                if(state.addBarcasRule === '1/2 kg'){
-                    state.alreadyCheckedAdds.splice(4);
-                } else if(state.addBarcasRule == '1 kg') {
-                    state.alreadyCheckedAdds.splice(8);
-                } else {
-                    state.alreadyCheckedAdds.splice(6);
+                switch (state.addBarcasRule) {
+                    case '1/2 kg':
+                        state.alreadyCheckedAdds.splice(4);
+                        break;
+                    case '1 kg':
+                        state.alreadyCheckedAdds.splice(8);
+                        break;
+                    case 'Prêmio':
+                        state.alreadyCheckedAdds.splice(6);
+                        break;
                 }
+            } else if(action.payload.path === 'roleta'){
+                state.alreadyCheckedAdds.splice(6);
+            } else if(action.payload.path === 'duplex'){
+                state.alreadyCheckedAdds.splice(4);
             }
+
         },
 
         setAlreadyCheckedAdds(state){
@@ -113,8 +123,17 @@ const deliverySlice = createSlice({
             state.cardPrice = state.sizeCheckedPrice + state.addPrice;
         },
 
-        setDescriptionOrder(state, action){
+        setDescriptionOrder(state, action) {
             state.descriptionOrder = action.payload;
+        },
+
+        setFlavor(state, action) {
+            state.flavor = action.payload;
+        },
+
+        setCardPriceOfExclusivos(state) {
+            state.sizeCheckedPrice = state.sizesPrice;
+            state.cardPrice = state.sizeCheckedPrice + state.addPrice;
         },
 
         setIsDisabled(state, action) {
@@ -140,16 +159,25 @@ const deliverySlice = createSlice({
 
         resetCard(state, action){
             state.showAddOptions = false;
-            if(action.payload === 'barcas'){
+
+            if(action.payload === 'barcas' || action.payload === 'roleta' || action.payload === 'duplex' || action.payload === 'divino'){
                 state.alreadyCheckedAdds = [];
-                state.addBarcasRule = '';
+                action.payload === 'barcas' && (state.addBarcasRule = '');
+            } else if(action.payload === 'kids') {
+                state.alreadyCheckedAdds = ["banana", "leite em pó", "leite condensado", "confete", "tubetes"];
+            } else if(action.payload === 'cestinha') {
+                state.alreadyCheckedAdds = ["morango", "chocoball"];
+            } else if(action.payload === 'banana-split') {
+                state.alreadyCheckedAdds = ["confete", "chantilly"];
             } else {
                 state.alreadyCheckedAdds = ["banana", "granola", "leite em pó"];
             }
+
             state.sizeCheckedPrice = 0;
             state.addPrice = 0;
             state.cardPrice = state.sizeCheckedPrice + state.addPrice;
             state.descriptionOrder = '';
+            state.flavor = '';
         },
 
         renderDeliverySubmenu(state){

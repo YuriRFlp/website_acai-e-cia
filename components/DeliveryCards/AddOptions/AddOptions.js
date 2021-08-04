@@ -19,6 +19,8 @@ const AddOptions = (props) => {
         dispatch(deliveryActions.renderAddOptions());
     };
 
+    let conditional = (props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex') ? false : true;
+
     return(
         <div className={classes.checkboxContainer}>
             <button className={classes.btnExit} type="button" onClick={showAddOptionsHandler}>
@@ -26,10 +28,13 @@ const AddOptions = (props) => {
                 <span className={classes.secondLine}></span>
             </button>
 
-            {props.pathId !== 'barcas' && 
+            {conditional && 
                 <Fragment>
                     <h4 className={classes.title}>Adicionais Inclusos 
-                        <span>(Adicionais já incluídos no pedido, <span className={classes.contrast}>desmarquem</span> a opção caso não queiram)</span>
+                    {props.pathId === 'divino'
+                        ? <span>(Escolha duas frutas, já incluídas no pedido, para acompanhar o seu Açaí Divino)</span>
+                        : <span>(Adicionais já incluídos no pedido, <span className={classes.contrast}>desmarquem</span> a opção caso não queiram)</span>
+                    }
                     </h4>
                     <IncludedAdds pathId={props.pathId} />
                 </Fragment>

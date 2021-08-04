@@ -8,21 +8,15 @@ const Adds_3 = (props) => {
     const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule); 
 
     const updateCardPriceHandler = (event) => {
-      let input = event.target;
+      const input = event.target;
   
       dispatch(deliveryActions.updateAlreadyCheckedAdds({value: input.value, path: props.pathId}));
      
-      if(props.pathId === 'barcas'){
+      if(props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex'){
         let maxAdd;
-        if ((addBarcasRule === '1/2 kg' && addList.length > 3 ) || (addBarcasRule === '1 kg' && addList.length > 7) || (addBarcasRule === 'Prêmio' && addList.length > 5)){
-          if(input.checked  === false){
-            dispatch(deliveryActions.setAddPrice(-3));
-          }
-          input.checked = false;
-          return;
-        }
-
-        switch (addBarcasRule) {
+        let quantityAddList;
+        if(props.pathId === 'barcas'){
+          switch (addBarcasRule) {
             case '1/2 kg':
               maxAdd = 4;
               break;
@@ -32,22 +26,43 @@ const Adds_3 = (props) => {
             case 'Prêmio':
               maxAdd = 6;
               break;
-        };
-        
-        if (input.checked) {
-          dispatch(deliveryActions.setAddPrice(3));
-        } else {
-          if(addList.length < maxAdd){
-            dispatch(deliveryActions.setAddPrice(-3));
+          };
+        } else if(props.pathId === 'roleta'){
+          maxAdd = 6;
+          quantityAddList = 5;
+        } else if(props.pathId === 'duplex'){
+          maxAdd = 4;
+          quantityAddList = 3;
+        }
+
+        if(props.pathId === 'barcas'){
+          if ((addBarcasRule === '1/2 kg' && addList.length > 3 ) || (addBarcasRule === '1 kg' && addList.length > 7) || (addBarcasRule === 'Prêmio' && addList.length > 5)){
+            input.checked === false 
+              ? dispatch(deliveryActions.setAddPrice(-3)) 
+              : input.checked = false;
+            return;
+          }
+        }
+  
+        if(props.pathId !== 'barcas'){
+          if(addList.length > quantityAddList){
+            input.checked === false
+              ? dispatch(deliveryActions.setAddPrice(-3)) 
+              : input.checked = false;
+            return;
           }
         }
         
-      } else{
         if (input.checked) {
           dispatch(deliveryActions.setAddPrice(3));
         } else {
-          dispatch(deliveryActions.setAddPrice(-3));
+          addList.length < maxAdd && dispatch(deliveryActions.setAddPrice(-3));
         }
+        
+      } else{
+        input.checked
+          ? dispatch(deliveryActions.setAddPrice(3))
+          : dispatch(deliveryActions.setAddPrice(-3));
       }
     };
 

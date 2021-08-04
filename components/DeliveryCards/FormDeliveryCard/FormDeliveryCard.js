@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deliveryActions, menuOptionsActions } from '../../../store';
+import { deliveryActions, iceCreamOptionsActions, cartActions } from '../../../store';
 import classes from './FormDeliveryCard.module.css';
 
 const FormDeliveryCard = (props) => {
@@ -9,13 +9,21 @@ const FormDeliveryCard = (props) => {
     const isDisabled = useSelector(state => state.deliveryReducer.isDisabled);
     const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule);
     const description = useSelector(state => state.deliveryReducer.descriptionOrder);
+    const size = useSelector(state => state.deliveryReducer.sizeChecked);
+    const flavor = useSelector(state => state.deliveryReducer.flavor);
+    const iceCreamList = useSelector(state => state.iceCreamOptionsReducer.iceCreamAlreadyChecked);
+    const addList = useSelector(state => state.deliveryReducer.alreadyCheckedAdds);
+
+    //Testando logica delivery-page
+    const cartItems = useSelector(state => state.cartReducer.items);
+    console.log(cartItems);
     
     const showAddOptionsHandler = () => {
         dispatch(deliveryActions.renderAddOptions());
     };
 
     const showIceCreamMenuHandler = () => {
-        dispatch(menuOptionsActions.renderIceCreamMenu());
+        dispatch(iceCreamOptionsActions.renderIceCreamMenu());
     };
 
     const inputRadioChecked = (event) => {
@@ -24,7 +32,7 @@ const FormDeliveryCard = (props) => {
         dispatch(deliveryActions.setSizeCheckedPrice());
         if(props.pathId === 'barcas') {
             dispatch(deliveryActions.setAddOptionsRule());
-            dispatch(menuOptionsActions.resetCard());
+            dispatch(iceCreamOptionsActions.resetCard());
         }
         dispatch(deliveryActions.setIsDisabled(props.pathId));
     }
@@ -34,11 +42,37 @@ const FormDeliveryCard = (props) => {
         dispatch(deliveryActions.setDescriptionOrder(textarea.value));
     };
 
+    const selectHandler = (event) => {
+        const select = event.target;
+        dispatch(deliveryActions.setFlavor(select.value));
+    };
+
+    const addItemToCartHandler = () => {
+        const order = {
+            title: props.title,
+            description,
+            addList,
+            iceCreamList,
+            size,
+            flavor,
+            cardPrice,
+        }
+
+        dispatch(cartActions.setItem(order));
+    };
+
+    if (!(props.pathId === 'cremes' || props.pathId === 'vitaminas' || props.pathId === 'sucos' || props.pathId === 'barcas')) {
+        dispatch(deliveryActions.setCardPriceOfExclusivos());
+    };
+
+    let iceCreamConditional = (props.pathId === 'barcas' && addBarcasRule === 'Prêmio') || props.pathId === 'divino' ? true : false;
+
     useEffect( () => {
+        dispatch(deliveryActions.resetCard(props.pathId));
         dispatch(deliveryActions.setSizesPrice(props.prices));
         dispatch(deliveryActions.setIsDisabled(props.pathId));
     }, [props.pathId]);
-
+    
     return(
         <form className={`${classes.form} ${(props.pathId === 'cremes' || props.pathId === 'vitaminas' || props.pathId === 'sucos' || props.pathId === 'barcas') ? '' : classes.formCustom}`}>
             {(props.pathId === 'cremes' || props.pathId === 'vitaminas' || props.pathId === 'sucos' || props.pathId === 'barcas') &&
@@ -63,7 +97,7 @@ const FormDeliveryCard = (props) => {
             }
 
             {props.pathId === 'sucos' && 
-                <select className={classes.select}>
+                <select className={classes.select} onChange={selectHandler} required value={flavor}>
                     <option>Sabores</option>
                     <option value="acai">Açaí</option>
                     <option value="laranja">Laranja</option>
@@ -71,7 +105,17 @@ const FormDeliveryCard = (props) => {
                 </select>
             }
 
-            {props.pathId === 'barcas' && addBarcasRule === 'Prêmio' &&
+            {props.pathId === 'mix' && 
+                <select className={classes.select} onChange={selectHandler} required value={flavor}>
+                    <option value="">Sabores</option>
+                    <option value="cupuacu">Cupuaçu</option>
+                    <option value="manga">Manga</option>
+                    <option value="maracuja">Maracuja</option>
+                    <option value="morango">Morango</option>
+                </select>
+            }
+
+            {iceCreamConditional &&
                 <button 
                     className={classes.btnIceCream}
                     type="button" 
@@ -108,7 +152,13 @@ const FormDeliveryCard = (props) => {
                 <span>{cardPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
             </p>
 
-            <button className={classes.btnCard} type="button">Adicionar ao carrinho</button>
+            <button 
+                className={classes.btnCard} 
+                type="button"
+                onClick={addItemToCartHandler}
+            >
+                    Adicionar ao carrinho
+            </button>
         </form>
     )
 }

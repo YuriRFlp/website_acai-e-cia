@@ -1,29 +1,39 @@
 import classes from '../AddOptions/AddOptions.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { menuOptionsActions } from '../../../store';
+import { iceCreamOptionsActions } from '../../../store';
 import { useEffect } from 'react';
+import { Fragment } from 'react';
 
-const IceCreamOptions = () => {
+const IceCreamOptions = (props) => {
     const dispatch = useDispatch();
-    const iceCreamChecked = useSelector(state => state.menuOptionsReducer.iceCreamAlreadyChecked)
-    console.log(iceCreamChecked)
+    const iceCreamChecked = useSelector(state => state.iceCreamOptionsReducer.iceCreamAlreadyChecked)
     
     useEffect( () => {
-        dispatch(menuOptionsActions.setAlreadyCheckedIceCreams());
+        dispatch(iceCreamOptionsActions.setAlreadyCheckedIceCreams());
     }, []);
 
     const updateIceCreamsCheckedHandler = (event) => {
         const input = event.target;
-        dispatch(menuOptionsActions.updateIceCreamAlreadyChecked(input.value));
-        if(iceCreamChecked.length > 2 && input.checked === true){
+
+        dispatch(iceCreamOptionsActions.updateIceCreamAlreadyChecked(input.value));
+        
+        let maxValue = null;
+        props.pathId === 'barcas' ? maxValue = 2 : maxValue = 0;
+        
+        if(iceCreamChecked.length > maxValue && input.checked === true){
             input.checked = false;
-            dispatch(menuOptionsActions.updateIceCreamAlreadyChecked(input.value));
+            dispatch(iceCreamOptionsActions.updateIceCreamAlreadyChecked(input.value));
         }
     };
 
     const showIceCreamMenuHandler = () => {
-        dispatch(menuOptionsActions.renderIceCreamMenu());
+        dispatch(iceCreamOptionsActions.renderIceCreamMenu());
     };
+
+    let title = '';
+    props.pathId === 'barcas'
+        ? title = <h3>A Barca Prêmio inclui 3 bolas de sorvete.<br></br>Escolha aqui os sabores!</h3>
+        : title = <h3>Escolha um sabor para acompanhar o seu Açaí Divino!</h3>
 
     return(
         <div className={classes.checkboxContainer}>
@@ -33,11 +43,15 @@ const IceCreamOptions = () => {
             </button>
 
             <h2>Sorvetes</h2>
-            <h3>A Barca Prêmio inclui 3 bolas de sorvete.<br></br>Escolha aqui os sabores!</h3>
-            <p className={classes.text}>1 sabor = 3 bolas de mesmo sabor</p>
-            <p className={classes.text}>2 sabores = Escreva no <b>Detalhes do Pedido</b> qual sabor terá 2 bolas</p>
-            <p className={classes.text}>3 sabores = 1 bola de cada sabor</p>
-            <h4>Sabores</h4>
+            {title}
+            {props.pathId === 'barcas' &&
+                <Fragment>
+                    <p className={classes.text}>1 sabor = 3 bolas de mesmo sabor</p>
+                    <p className={classes.text}>2 sabores = Escreva no <b>Detalhes do Pedido</b> qual sabor terá 2 bolas</p>
+                    <p className={classes.text}>3 sabores = 1 bola de cada sabor</p>
+                </Fragment>
+            }
+            {props.pathId === 'barcas' &&<h4>Sabores</h4>}
             <div className={classes.checkbox}>
                 <div className={classes.checkboxFlexItems}>
                     <label>

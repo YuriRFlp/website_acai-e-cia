@@ -6,55 +6,75 @@ const Adds_1e50 = (props) => {
   const dispatch = useDispatch();
   const addList = useSelector(state => state.deliveryReducer.alreadyCheckedAdds);
   const addBarcasRule = useSelector(state => state.deliveryReducer.addBarcasRule);
-
+  
   const updateCardPriceHandler = (event) => {
     const input = event.target;
 
     dispatch(deliveryActions.updateAlreadyCheckedAdds({value: input.value, path: props.pathId}));
    
-    if(props.pathId === 'barcas'){
+    if(props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex'){
       let maxAdd;
-      if ((addBarcasRule === '1/2 kg' && addList.length > 3 ) || (addBarcasRule === '1 kg' && addList.length > 7) || (addBarcasRule === 'Prêmio' && addList.length > 5)){
-        if(input.checked  === false){
-          dispatch(deliveryActions.setAddPrice(-1.5));
-        }
-        input.checked = false;
-        return;
+      let quantityAddList;
+      if(props.pathId === 'barcas'){
+        switch (addBarcasRule) {
+          case '1/2 kg':
+            maxAdd = 4;
+            break;
+          case '1 kg':
+            maxAdd = 8;
+            break;
+          case 'Prêmio':
+            maxAdd = 6;
+            break;
+        };
+      } else if(props.pathId === 'roleta'){
+        maxAdd = 6;
+        quantityAddList = 5;
+      } else if(props.pathId === 'duplex'){
+        maxAdd = 4;
+        quantityAddList = 3;
       }
 
-      switch (addBarcasRule) {
-        case '1/2 kg':
-          maxAdd = 4;
-          break;
-        case '1 kg':
-          maxAdd = 8;
-          break;
-        case 'Prêmio':
-          maxAdd = 6;
-          break;
-      };
+      if(props.pathId === 'barcas'){
+        if ((addBarcasRule === '1/2 kg' && addList.length > 3 ) || (addBarcasRule === '1 kg' && addList.length > 7) || (addBarcasRule === 'Prêmio' && addList.length > 5)){
+          input.checked === false 
+            ? dispatch(deliveryActions.setAddPrice(-1.5)) 
+            : input.checked = false;
+          return;
+        }
+      }
+
+      if(props.pathId !== 'barcas'){
+        if(addList.length > quantityAddList){
+          input.checked === false
+            ? dispatch(deliveryActions.setAddPrice(-1.5)) 
+            : input.checked = false;
+          return;
+        }
+      }
       
       if (input.checked) {
         dispatch(deliveryActions.setAddPrice(1.5));
       } else {
-        if(addList.length < maxAdd){
-          dispatch(deliveryActions.setAddPrice(-1.5));
-        }
+        addList.length < maxAdd && dispatch(deliveryActions.setAddPrice(-1.5));
       }
       
     } else{
-      if (input.checked) {
-        dispatch(deliveryActions.setAddPrice(1.5));
-      } else {
-        dispatch(deliveryActions.setAddPrice(-1.5));
-      }
+      input.checked 
+        ? dispatch(deliveryActions.setAddPrice(1.5)) 
+        : dispatch(deliveryActions.setAddPrice(-1.5));
     }
   };
 
+  let confeteConditional = true;
+  if (props.pathId === 'kids' || props.pathId === 'banana-split') {
+      confeteConditional = false;
+  }
+  
   return (
     <div className={classes.checkbox}>
       <div className={classes.checkboxFlexItems}>
-        {props.pathId === 'barcas' &&
+        {(props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex' || props.pathId === 'divino') &&
             <label>
               <input
                   type="checkbox"
@@ -124,7 +144,7 @@ const Adds_1e50 = (props) => {
       </div>
 
       <div className={classes.checkboxFlexItems}>
-        {props.pathId === 'barcas' &&
+        {(props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex' || props.pathId === 'divino') &&
             <label>
               <input
                   type="checkbox"
@@ -155,29 +175,29 @@ const Adds_1e50 = (props) => {
         <label>
           <input
             type="checkbox"
-            value="chocoball"
+            value="cobertura chocolate"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
           ></input>
           <span className={classes.checkboxCustom}>
             <span></span>
           </span>
-          Chocoball
+          Cobertura de chocolate
         </label>
 
         <label>
           <input
             type="checkbox"
-            value="confete"
+            value="batom"
             onClick={updateCardPriceHandler}
             className='inputCheckbox'
           ></input>
           <span className={classes.checkboxCustom}>
             <span></span>
           </span>
-          Confete
+          Batom chocolate
         </label>
-
+        
         <label>
           <input
             type="checkbox"
@@ -194,7 +214,7 @@ const Adds_1e50 = (props) => {
       </div>
 
       <div className={classes.checkboxFlexItems}>
-        {props.pathId === 'barcas' &&
+        {(props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex' || props.pathId === 'divino') &&
             <label>
               <input
                   type="checkbox"
@@ -222,44 +242,50 @@ const Adds_1e50 = (props) => {
           Abacaxi
         </label>
 
-        <label>
-          <input
-            type="checkbox"
-            value="leite condensado"
-            onClick={updateCardPriceHandler}
-            className='inputCheckbox'
-          ></input>
-          <span className={classes.checkboxCustom}>
-            <span></span>
-          </span>
-          Leite condensado
-        </label>
+        {props.pathId !== 'kids' &&
+          <label>
+            <input
+              type="checkbox"
+              value="leite condensado"
+              onClick={updateCardPriceHandler}
+              className='inputCheckbox'
+            ></input>
+            <span className={classes.checkboxCustom}>
+              <span></span>
+            </span>
+            Leite condensado
+          </label>
+        }
 
-        <label>
-          <input
-            type="checkbox"
-            value="batom"
-            onClick={updateCardPriceHandler}
-            className='inputCheckbox'
-          ></input>
-          <span className={classes.checkboxCustom}>
-            <span></span>
-          </span>
-          Batom chocolate
-        </label>
+        {confeteConditional &&
+          <label>
+            <input
+              type="checkbox"
+              value="confete"
+              onClick={updateCardPriceHandler}
+              className='inputCheckbox'
+            ></input>
+            <span className={classes.checkboxCustom}>
+              <span></span>
+            </span>
+            Confete
+          </label>
+        }
 
-        <label>
-          <input
-            type="checkbox"
-            value="cobertura chocolate"
-            onClick={updateCardPriceHandler}
-            className='inputCheckbox'
-          ></input>
-          <span className={classes.checkboxCustom}>
-            <span></span>
-          </span>
-          Cobertura de chocolate
-        </label>
+        {props.pathId !== 'cestinha' &&
+          <label>
+            <input
+              type="checkbox"
+              value="chocoball"
+              onClick={updateCardPriceHandler}
+              className='inputCheckbox'
+            ></input>
+            <span className={classes.checkboxCustom}>
+              <span></span>
+            </span>
+            Chocoball
+          </label>
+        }
       </div>
     </div>
   );

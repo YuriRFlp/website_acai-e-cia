@@ -73,6 +73,7 @@
 }
 
 .select{
+    align-self: flex-end;
     margin: 1em auto;
     height: 30px;
     padding-left: .3em;
