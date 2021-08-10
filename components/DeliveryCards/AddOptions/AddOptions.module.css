@@ -24,9 +24,26 @@
     font-size: 12px;
 }
 
-.title span{
+.invisible{
+    opacity: 0;
+}
+
+.span{
     display: inline-block;
     font-size: .9em;
+}
+
+.advise{
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 3em;
+}
+
+.advise span{
+    color:#e67a2a;
+    font-weight: 600;
+    font-size: 1.2em;
 }
 
 .text{

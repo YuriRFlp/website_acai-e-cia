@@ -13,50 +13,25 @@ const Adds_1e50 = (props) => {
     dispatch(deliveryActions.updateAlreadyCheckedAdds({value: input.value, path: props.pathId}));
    
     if(props.pathId === 'barcas' || props.pathId === 'roleta' || props.pathId === 'duplex'){
-      let maxAdd;
       let quantityAddList;
-      if(props.pathId === 'barcas'){
-        switch (addBarcasRule) {
-          case '1/2 kg':
-            maxAdd = 4;
-            break;
-          case '1 kg':
-            maxAdd = 8;
-            break;
-          case 'Prêmio':
-            maxAdd = 6;
-            break;
-        };
-      } else if(props.pathId === 'roleta'){
-        maxAdd = 6;
+      if(props.pathId === 'roleta'){
         quantityAddList = 5;
       } else if(props.pathId === 'duplex'){
-        maxAdd = 4;
         quantityAddList = 3;
       }
 
       if(props.pathId === 'barcas'){
         if ((addBarcasRule === '1/2 kg' && addList.length > 3 ) || (addBarcasRule === '1 kg' && addList.length > 7) || (addBarcasRule === 'Prêmio' && addList.length > 5)){
-          input.checked === false 
-            ? dispatch(deliveryActions.setAddPrice(-1.5)) 
-            : input.checked = false;
+          input.checked === true && (input.checked = false);
           return;
         }
       }
 
       if(props.pathId !== 'barcas'){
         if(addList.length > quantityAddList){
-          input.checked === false
-            ? dispatch(deliveryActions.setAddPrice(-1.5)) 
-            : input.checked = false;
+          input.checked === true && (input.checked = false);
           return;
         }
-      }
-      
-      if (input.checked) {
-        dispatch(deliveryActions.setAddPrice(1.5));
-      } else {
-        addList.length < maxAdd && dispatch(deliveryActions.setAddPrice(-1.5));
       }
       
     } else{
@@ -67,7 +42,7 @@ const Adds_1e50 = (props) => {
   };
 
   let confeteConditional = true;
-  if (props.pathId === 'kids' || props.pathId === 'banana-split') {
+  if (props.pathId === 'kids') {
       confeteConditional = false;
   }
   
@@ -272,20 +247,18 @@ const Adds_1e50 = (props) => {
           </label>
         }
 
-        {props.pathId !== 'cestinha' &&
-          <label>
-            <input
-              type="checkbox"
-              value="chocoball"
-              onClick={updateCardPriceHandler}
-              className='inputCheckbox'
-            ></input>
-            <span className={classes.checkboxCustom}>
-              <span></span>
-            </span>
-            Chocoball
-          </label>
-        }
+        <label>
+          <input
+            type="checkbox"
+            value="chocoball"
+            onClick={updateCardPriceHandler}
+            className='inputCheckbox'
+          ></input>
+          <span className={classes.checkboxCustom}>
+            <span></span>
+          </span>
+          Chocoball
+        </label>
       </div>
     </div>
   );

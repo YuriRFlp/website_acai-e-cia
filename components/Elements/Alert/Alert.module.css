@@ -1,0 +1,54 @@
+.container{
+    position: absolute;
+    bottom: 1%;
+    right: 2.5%;
+    background-color: #fff;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 300px;
+    text-align: left;
+    z-index: 5;
+    border-radius: 5px;
+    padding: .8em 1em;
+}
+
+.topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px 5px 0 0;
+}
+
+.flexContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title{
+    font-size: 16px;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.text{
+    margin-top: 1.5em;
+    font-size: 15px;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.dangerStyle{
+    background-color: #FDECEA;
+}
+
+.successStyle{
+    background-color: #EDF7ED;
+}
+
+.warningStyle{
+    background-color: #FFF4E5;
+}

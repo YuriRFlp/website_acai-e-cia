@@ -46,9 +46,9 @@ const IceCreamOptions = (props) => {
             {title}
             {props.pathId === 'barcas' &&
                 <Fragment>
-                    <p className={classes.text}>1 sabor = 3 bolas de mesmo sabor</p>
-                    <p className={classes.text}>2 sabores = Escreva no <b>Detalhes do Pedido</b> qual sabor terá 2 bolas</p>
-                    <p className={classes.text}>3 sabores = 1 bola de cada sabor</p>
+                    <p className={classes.text}>1 sabor escolhido = 3 bolas de mesmo sabor</p>
+                    <p className={classes.text}>2 sabores escolhidos = Escreva no <b>Detalhes do Pedido</b> qual sabor terá 2 bolas</p>
+                    <p className={classes.text}>3 sabores escolhidos = 1 bola de cada sabor</p>
                 </Fragment>
             }
             {props.pathId === 'barcas' &&<h4>Sabores</h4>}

@@ -77,7 +77,7 @@ const IncludedAdds = (props) => {
                     <label>
                         <input
                             type="checkbox"
-                            value="chocoball"
+                            value="chocoball_gratis"
                             onClick={updateCardPriceHandler}
                             className='inputCheckbox'
                         ></input>
@@ -90,7 +90,7 @@ const IncludedAdds = (props) => {
                     <label>
                         <input 
                             type="checkbox"  
-                            value="morango"
+                            value="morango_gratis"
                             onClick={updateCardPriceHandler}
                             className='inputCheckbox'
                         ></input>
@@ -107,7 +107,7 @@ const IncludedAdds = (props) => {
                     <label>
                         <input
                             type="checkbox"
-                            value="confete"
+                            value="confete_gratis"
                             onClick={updateCardPriceHandler}
                             className='inputCheckbox'
                         ></input>
@@ -120,7 +120,7 @@ const IncludedAdds = (props) => {
                     <label>
                         <input 
                             type="checkbox"  
-                            value="chantilly"
+                            value="chantilly_gratis"
                             onClick={updateCardPriceHandler}
                             className='inputCheckbox'
                         ></input>

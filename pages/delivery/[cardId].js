@@ -1,11 +1,15 @@
 import DeliveryMenu from '../../components/DeliveryMenu/DeliveryMenu';
 import DeliveryCards from '../../components/DeliveryCards/DeliveryCards';
 import { useRouter } from 'next/router';
+import Alert from '../../components/Elements/Alert/Alert';
 import classes from '../../styles/DeliveryPage.module.css';
+import { useSelector } from 'react-redux';
 
 const CardPage = (props) => {
     const route = useRouter();
     const cardId = route.query.cardId;
+    const alertDisplay = useSelector(state => state.alertReducer.display);
+    const modalDisplay = useSelector(state => state.modalReducer.display);
     
     return(
         <section className={classes.flexColumnContainer}>
@@ -16,6 +20,8 @@ const CardPage = (props) => {
                     cardData={props.data}
                     pathId={cardId}
                 />
+                
+                {alertDisplay && <Alert />}
             </div> 
         </section>
     )

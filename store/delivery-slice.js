@@ -87,7 +87,7 @@ const deliverySlice = createSlice({
                 return input.value === action.payload;
             });
 
-            state.sizeChecked = action.payload.value;
+            state.sizeChecked = action.payload;
         },
 
         setSizeCheckedPrice(state) {
@@ -96,8 +96,8 @@ const deliverySlice = createSlice({
                     state.sizeCheckedPrice = state.sizesPrice[0];
                     break;
                 case 1:
-                        state.sizeCheckedPrice = state.sizesPrice[1];
-                        break;
+                    state.sizeCheckedPrice = state.sizesPrice[1];
+                    break;
                 case 2:
                     state.sizeCheckedPrice = state.sizesPrice[2];
                     break;
@@ -160,15 +160,15 @@ const deliverySlice = createSlice({
         resetCard(state, action){
             state.showAddOptions = false;
 
-            if(action.payload === 'barcas' || action.payload === 'roleta' || action.payload === 'duplex' || action.payload === 'divino'){
+            if(action.payload === 'barcas' || action.payload === 'sucos' || action.payload === 'roleta' || action.payload === 'duplex' || action.payload === 'divino'){
                 state.alreadyCheckedAdds = [];
                 action.payload === 'barcas' && (state.addBarcasRule = '');
             } else if(action.payload === 'kids') {
                 state.alreadyCheckedAdds = ["banana", "leite em pó", "leite condensado", "confete", "tubetes"];
             } else if(action.payload === 'cestinha') {
-                state.alreadyCheckedAdds = ["morango", "chocoball"];
+                state.alreadyCheckedAdds = ["morango_gratis", "chocoball_gratis"];
             } else if(action.payload === 'banana-split') {
-                state.alreadyCheckedAdds = ["confete", "chantilly"];
+                state.alreadyCheckedAdds = ["confete_gratis", "chantilly_gratis"];
             } else {
                 state.alreadyCheckedAdds = ["banana", "granola", "leite em pó"];
             }
@@ -178,6 +178,11 @@ const deliverySlice = createSlice({
             state.cardPrice = state.sizeCheckedPrice + state.addPrice;
             state.descriptionOrder = '';
             state.flavor = '';
+            state.sizeChecked = '';
+            if(action.payload === 'barcas' || action.payload === 'sucos' || action.payload === 'cremes' || action.payload === 'vitaminas') {
+                const radioZero = document.querySelector('#radioZero');
+                radioZero.checked = true;
+            }
         },
 
         renderDeliverySubmenu(state){

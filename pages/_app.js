@@ -2,8 +2,8 @@ import { Provider } from 'react-redux';
 import Head from "next/head";
 import store from '../store/index';
 import Layout from '../components/Layout/Layout';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab, faGoogle, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab, faGoogle, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import '../styles/globals.css'
 
 library.add(fab, faWhatsapp, faGoogle);

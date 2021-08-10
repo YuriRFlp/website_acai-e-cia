@@ -15,6 +15,10 @@
     opacity: 0;
 }
 
+.radioZero{
+    height: .1px;
+}
+
 .form input[type='radio']:focus ~ .radioCustom{
     outline: none;
     box-shadow: 0 0 0 1px #571e3e;
