@@ -1,6 +1,7 @@
 import { createSlice } from  "@reduxjs/toolkit";
 
-const initialState = {
+const initialState = { 
+    windowWidth: null, 
     showNav: false, 
     scroll: false,
     cardapioLink: false,
@@ -23,7 +24,9 @@ const menuSlice = createSlice({
         },
 
         showMenu(state, action) {
-           if(action.payload > 1023){
+            state.windowWidth = action.payload;
+
+            if(state.windowWidth > 1023){
                 state.showNav = true;
             } else {
                 state.showNav = false;
@@ -31,8 +34,10 @@ const menuSlice = createSlice({
         },
 
         editMenu(state, action) {
+            state.windowWidth = action.payload;
             const windowScroll = window.scrollY;
-            if(action.payload < 1023) {
+            
+            if(state.windowWidth < 1023) {
                 if(windowScroll <= 20) {
                     state.showNav ? state.scroll = true : state.scroll = false;
                 } else {
