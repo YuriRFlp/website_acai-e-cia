@@ -1,10 +1,35 @@
-.header{
+.headerImg{
     grid-area: 1/1/2/-1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, mincontent);
     position: relative;
     z-index: 999999 !important;
-    position: fixed;
     width: 100%;
+    height: 100vh;
+    background-image: url(../../../public/banner-490.png);
+    background-size: cover;
+    background-position: bottom;
+}
+
+.header{
+    grid-area: 1/1/2/-1;
+    position: relative;
+    z-index: 999999 !important;
+    width: 100%;
+}
+
+@media screen and (min-width: 490px) {
+    .headerImg{
+        background-image: url(../../../public/banner-750.png);
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .headerImg{
+        background-image: url(../../../public/banner-1024.png);
+    }
+}
+
+@media screen and (min-width: 64em) {
+    .headerImg{
+        background-image: url(../../../public/banner.png);
+    }
 }

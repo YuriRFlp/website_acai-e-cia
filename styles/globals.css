@@ -13,3 +13,29 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.fadeInDown-appear {
+  opacity: 0;
+  transform: translateY(-383.97px);
+}
+.fadeInDown-appear.fadeInDown-appear-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity .3s ease-in-out;
+}
+
+.fadeInDown-exit {
+  opacity: 0;
+}
+.fadeInDown-exit.fadeInDown-exit-active {
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}

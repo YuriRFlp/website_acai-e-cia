@@ -1,16 +1,17 @@
 import Nav from './Nav/Nav';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSignInAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { menuActions } from '../../../../store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import classes from './HeaderNavigation.module.css';
 
 
-const HeaderNavigation = () => {
+const HeaderNavigation = (props) => {
     const dispatch = useDispatch();
     const hasNav = useSelector( state => state.menuReducer.showNav);
+    const scroll = useSelector( state => state.menuReducer.scroll);
     const currentWidth = useSelector( state => state.menuReducer.windowWidth);
 
     const toggleMenuHandler = () => {
@@ -22,7 +23,13 @@ const HeaderNavigation = () => {
         dispatch(menuActions.showMenu(windowWidth));
     };
 
+    const handleScrollHandler = () => {
+        const windowWidth = window.innerWidth;
+        dispatch(menuActions.editMenu(windowWidth));
+    };
+
     useEffect( () => {
+        window.addEventListener("scroll", handleScrollHandler);
         window.addEventListener("resize", handleResizeHandler);
         dispatch(menuActions.showMenu(window.innerWidth));
     }, []);
@@ -36,7 +43,7 @@ const HeaderNavigation = () => {
     }
 
     return(
-        <div className={classes.menuNavigation}>
+        <div className={`${classes.menuNavigation} ${scroll || props.path !== '/' ? classes.scrollCustomize : ''}`}>
             <Link href="/">
                 <a className={classes.logoLink}>
                     <img 
@@ -51,7 +58,21 @@ const HeaderNavigation = () => {
                 <FontAwesomeIcon icon={faBars} />
             </button>
                 
-            {navigation && <Nav />}
+            {navigation && <Nav path={props.path}/>}
+
+            <div className={classes.iconsContainer}>
+                <Link href="/login">
+                    <a className={classes.iconsLink}>
+                        <FontAwesomeIcon icon={faSignInAlt} size="2x" />
+                    </a>
+                </Link>
+
+                <Link href="/cart">
+                    <a className={classes.iconsLink}>
+                        <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+                    </a>
+                </Link>
+            </div>
         </div>
     )
 }

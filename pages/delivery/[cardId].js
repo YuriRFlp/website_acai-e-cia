@@ -9,12 +9,12 @@ const CardPage = (props) => {
     const route = useRouter();
     const cardId = route.query.cardId;
     const alertDisplay = useSelector(state => state.alertReducer.display);
-    const modalDisplay = useSelector(state => state.modalReducer.display);
     
     return(
-        <section className={classes.flexColumnContainer}>
-            <h1 className={classes.title}>Monte seu pedido</h1>
-            <div className={classes.flexRowContainer}>
+        <div className={classes.container}>
+            <img src="/img-delivery.png" alt="" className={classes.img}></img>
+
+            <div className={classes.content}>
                 <DeliveryMenu />
                 <DeliveryCards 
                     cardData={props.data}
@@ -23,7 +23,7 @@ const CardPage = (props) => {
                 
                 {alertDisplay && <Alert />}
             </div> 
-        </section>
+        </div>
     )
 }
 

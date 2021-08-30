@@ -1,12 +1,10 @@
 import HeaderNavigation from './HeaderNavigation/HeaderNavigation';
-import TopBar from './TopBar/TopBar';
 import classes from './Header.module.css';
 
-const Header = () => {
+const Header = (props) => {
     return (
-        <header className={classes.header}>
-            <TopBar />
-            <HeaderNavigation />
+        <header className={`${props.path === '/' ? classes.headerImg : classes.header}`}>
+            <HeaderNavigation path={props.path} />
         </header>
     )
 }

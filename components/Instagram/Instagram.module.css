@@ -1,29 +1,54 @@
 .container{
     display: flex;
     flex-flow: column;
-    margin-bottom: 3em;
-    padding-top: 4.8em;
+    margin-bottom: 12em;
+    padding-top: 6em;
 }
 
 .title{
     color: #571e3e;
-    text-transform: uppercase;
-    font-size: 24px;
-    margin: 3em 0 1.5em 0;
+    font-size: 36px;
+    margin: 3em 0 1em 0;
+    align-self: flex-start;
 }
 
-.instagram{
-    align-self: flex-start;
+.feedContainer{
+    position: relative;
+}
+
+.perfilContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -1.6%;
+    right: 0;
     background-color: #571e3e;
     color: #fff;
     padding: 1em;
-    border-radius: 5px;
-    margin: 0 0 1em 0;
-    font-size: 3vw;
+    height: 62px;
+    width: 200.58px;
+    z-index: 99999;
+}
+
+.instagram{
+    font-size: .9em;
+    margin: 0;
+}
+
+@media screen and (min-width: 607px) {
+    .perfilContainer{
+        bottom: -1.2%;
+    }
 }
 
 @media screen and (min-width: 48em) {
     .instagram {
-      font-size: 1.5em; 
+      font-size: 1.2em; 
+    }
+
+    .perfilContainer{
+        height: 62px;
+        width: 280.58px;
     }
 }

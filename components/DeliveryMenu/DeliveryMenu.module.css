@@ -1,32 +1,43 @@
 .containerDeliveryMenu{
     position: relative;
-    display: flex;
-    flex-flow: column;
-    background-color: #571e3e;
+    background-color: rgba(87, 30, 62, .95);
     color: #fff;
     border-radius: 10px;
-    margin: 2em auto 6em auto;
+    margin-top: .2em;
+    padding: .5em;
 }
 
 .list{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content:left;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
+.li_Menu{
+    width: 126px;
+    text-align: left;
+}
+
+.li_SubMenu{
+    width: 155px;
+    text-align: left;
+}
+
 .subtitle{
-    text-transform: uppercase;
-    margin: 10px auto;
-    font-size: 18px;
+    font-size: 20px;
+    margin: 0;
+    padding: .5em;
+    border-bottom: 1px dotted #e67a2a;
 }
 
 .link{
     display: inline-block;
-    width: 100%;
-    padding: 1em;
+    padding: .6em .8em;
+    margin: .5em 0;
+    border-radius: 20px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
@@ -34,45 +45,18 @@
 }
 
 .link:hover{
-    color: #e67a2a;
+    background-color: #e67a2a;
 }
 
 .list li:last-child{
     cursor: pointer;
 }
 
-
-@media screen and (min-width: 730px){
-    .containerDeliveryMenu{
-        display: block;
-        width: 13em;
-        height: 456px;
-        margin-top: 0;
-        margin: auto 0;
-    }
-
-    .list{
-        flex-flow: column;
-    }
-
-    .link{
-        border-top: 1px dotted #e67a2a;
-        font-size: 16px;
-        padding: 1.5em auto;
-    }
-    
-    .list li:last-child{
-        border-bottom: 1px dotted #e67a2a;
-    }
-
-    .subtitle{
-        margin: 1.8em auto;
-    }
-}
-
-
-@media screen and (min-width: 730px) and (max-width: 789px) {
-    .editBorder{
-        border-radius: 10px 0 0 10px;
-    }
+.icon{
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    padding: .2em;
+    color: #fff;
+    cursor: pointer;
 }

@@ -1,5 +1,6 @@
 .footerContainer{
     background-color: rgba(87, 30, 62, 0.95);
+    border-radius: 180px 180px 0 0;
 }
 
 .footer{
@@ -9,7 +10,12 @@
     justify-content: space-around;
     text-align: left;
     color: #fff;
-    padding: 4.8em 2.5em 2em 2.5em;
+    padding: 4.8em 2.5em;
+}
+
+.footer div{
+    padding: 0 1.21em;
+    font-size: .76em;
 }
 
 .subtitle{
@@ -19,6 +25,17 @@
 
 .icons{
     margin-right: .5em;
+}
+
+@media screen and (min-width: 854px) {
+    .footerContainer{
+        height: 400px;
+    }
+
+    .footer div{
+        padding: 0 1.21em;
+        font-size: 1em;
+    }
 }
 
 @media screen and (min-width: 64em) {

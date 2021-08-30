@@ -1,0 +1,71 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D5D973;
+    height: 800px;
+    margin: 204px auto;
+    border-radius: 180px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.inviteContainer{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.inviteCardapio, .inviteDelivery{
+    width: 265.91px;
+    margin: 2em 0;
+}
+
+.title{
+    color: #571e3e;
+    text-align: left;
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.text{
+    text-align: left;
+    color: #571e3e;
+}
+
+.btn{
+    text-transform: uppercase;
+    background-color: #e67a2a;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: .8em 0;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 2em;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 854px) {
+    .container{
+        height: 600px;
+    }
+
+    .inviteContainer{
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+
+    .inviteCardapio{
+        margin: 0;
+        margin-right: 12%;
+    }
+    
+    .inviteDelivery{
+        margin: 0;
+        margin-left: 12%;
+    }
+}

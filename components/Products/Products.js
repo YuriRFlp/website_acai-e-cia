@@ -24,7 +24,7 @@ const Products = (props) => {
 
     return(
         <Fragment>
-            <h1 className={classes.title}>Produtos</h1>
+            <h1 className={classes.title}>Conheça nossos produtos</h1>
                 
             <select className={classes.select} onChange={selectedValueHandler}>
                 <option value="selecione">Selecione o tipo de produto</option>

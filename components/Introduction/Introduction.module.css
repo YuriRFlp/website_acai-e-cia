@@ -1,59 +1,98 @@
 .container{
     padding-top: 6.8em;
+    height: 625px;
+    position: relative;
+}
+
+.imgContainer{
+    position: relative;
+}
+
+.img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 337.5px;
+    height: 327.06px;
 }
 
 .title{
-    margin: 3rem 0 1.5rem 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 32px;
+    margin: 15.8rem 0 0 0;
     color: #571e3e;
-    text-transform: uppercase;
-    font-size: 24px;
+    align-self: flex-start;
+    text-align: left;
+    width: 180px;
 }
 
 .text{
+    position: absolute;
+    bottom: -3%;
+    right: 0;
+    margin: 0;
     text-align: justify;
-    line-height: 1.5;
+    line-height: 1.2;
     font-weight: 500;
+    color: #571e3e;
 }
 
-.image{
-    width: 60%;
-    /* filter: drop-shadow(0px 0px 10px rgb(212, 212, 212)); */
-}
-
-@media screen and (min-width: 36em) {
-    .image {
-      width: 50%; 
-    }
-}
-
-@media screen and (min-width: 48em) {
-    .image {
-      width: 40%; 
+@media screen and (max-width: 695px) {
+    .container{
+        padding-top: 6.8em;
+        height: 705px;
+        position: relative;
     }
 
-    .text {
-      line-height: 1.9; 
+    .title{
+        left: 0;
+        margin: 15rem 0 0 0;
+    }
+
+    .text{
+        left: 0;
+        width: 341.25px;
+        overflow: auto;
+    }
+
+}
+
+@media screen and (min-width: 846px) {
+    .title{
+        width: 298px;
+        margin: 18.25rem 0 0 0;
+    }
+
+    .text{
+        bottom: 0;
+        right: 0;
     }
 }
 
 @media screen and (min-width: 64em) {
-    .flexContainer{
-        display: flex;
-    }
 
-    .text {
-        margin: 0; 
+    .img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60%;
+        height: initial;
     }
-
-    .flexContainer .text:nth-child(1) {
-        text-align: left; 
+    
+    .title{
+        font-size: 36px;
+        width: 200px;
+        left: 31.5%;
+        margin: 2rem 0 1.5rem 0;
     }
-    .flexContainer .text:nth-child(3) {
-        text-align: right; 
-    }
-
-    .image {
-        width: 30%;
-        margin-left: 1em;
+    
+    .text{
+        bottom: 0;
+        right: 0;
+        margin-top: 0;
+        text-align: left;
+        width: 29%;
     }
 }

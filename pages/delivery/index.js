@@ -1,15 +1,14 @@
-import { Fragment } from 'react';
 import DeliveryMenu from '../../components/DeliveryMenu/DeliveryMenu';
 import classes from '../../styles/DeliveryPage.module.css';
 
 const DeliveryPage = () => {
-
     return(
-        <Fragment>
-            <h1 className={classes.title}>Monte seu pedido</h1>
-            <div className={classes.flexRowContainer}>
+        <div className={classes.container}>
+            <img src="img-delivery.png" alt="" className={classes.img}></img>
+
+            <div className={classes.content}>
                 <DeliveryMenu />
-                <section className={`${classes.flexColumnContainer} ${classes.margin}`}>
+                <section className={classes.textContainer}>
                     <p className={classes.text}>
                         1- Selecione o tipo do produto
                     </p>
@@ -21,7 +20,7 @@ const DeliveryPage = () => {
                     </p>
                 </section>
             </div> 
-        </Fragment>
+        </div>
     )
 }
 

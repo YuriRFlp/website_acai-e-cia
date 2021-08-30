@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import Banner from './Banner/Banner';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import classes from './Layout.module.css';
@@ -10,11 +9,9 @@ const Layout = (props) => {
 
     return (
         <div className={classes.containerAll}>
-            <Header />
+            <Header path={path}/>
 
             <main className={classes.mainContent}>
-                {path === '/' && <Banner />}
-
                 <section className={classes.sectionContent}>
                     {props.children}
                 </section>
@@ -24,7 +21,7 @@ const Layout = (props) => {
             
             <div className={classes.bottomBar}>
                 <p className={classes.bottomBarText}>
-                    © {2021} Açaí &amp; Cia. All Rights Reserved. Powered by Açaí &amp; Cia
+                    © {2021} Açaí &amp; Cia. Todos os Direitos Reservados
                 </p>
             </div>
         </div>
