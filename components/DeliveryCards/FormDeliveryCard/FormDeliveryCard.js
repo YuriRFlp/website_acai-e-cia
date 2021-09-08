@@ -50,6 +50,7 @@ const FormDeliveryCard = (props) => {
 
     const addItemToCartHandler = () => {
         const order = {
+            id: cartItems.length,
             title: props.title,
             description,
             addList,
@@ -57,6 +58,8 @@ const FormDeliveryCard = (props) => {
             size,
             flavor,
             cardPrice,
+            url: props.url,
+            quantity: 1
         }
 
         let validate = true;

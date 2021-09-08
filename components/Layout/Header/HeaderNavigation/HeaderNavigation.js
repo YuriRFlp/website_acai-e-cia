@@ -2,7 +2,7 @@ import Nav from './Nav/Nav';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSignInAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { menuActions } from '../../../../store/index';
+import { menuActions, cartActions } from '../../../../store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import classes from './HeaderNavigation.module.css';
@@ -13,6 +13,8 @@ const HeaderNavigation = (props) => {
     const hasNav = useSelector( state => state.menuReducer.showNav);
     const scroll = useSelector( state => state.menuReducer.scroll);
     const currentWidth = useSelector( state => state.menuReducer.windowWidth);
+    const cartQuantity = useSelector( state => state.cartReducer.quantity);
+    const subtotalPrice = useSelector( state => state.cartReducer.subtotalPrice);
 
     const toggleMenuHandler = () => {
         dispatch(menuActions.toggleMenu());
@@ -27,6 +29,10 @@ const HeaderNavigation = (props) => {
         const windowWidth = window.innerWidth;
         dispatch(menuActions.editMenu(windowWidth));
     };
+
+    const showCartHandler = () => {
+        dispatch(cartActions.showCart());
+    }
 
     useEffect( () => {
         window.addEventListener("scroll", handleScrollHandler);
@@ -67,11 +73,13 @@ const HeaderNavigation = (props) => {
                     </a>
                 </Link>
 
-                <Link href="/cart">
-                    <a className={classes.iconsLink}>
-                        <FontAwesomeIcon icon={faShoppingCart} size="2x" />
-                    </a>
-                </Link>
+                <span className={classes.icon_cart} onClick={showCartHandler}>
+                    <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+                    <span className={classes.cartQuantity}>{cartQuantity}</span>
+                    <p className={classes.subtotalPrice}>
+                        {subtotalPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                    </p>
+                </span>
             </div>
         </div>
     )

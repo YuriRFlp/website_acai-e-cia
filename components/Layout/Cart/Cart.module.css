@@ -1,0 +1,120 @@
+.background{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999999 !important;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.cartContainer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 41.66vw;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 999999 !important;
+    padding: 1rem;
+    overflow: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+.icon_times{
+    color: #571e3e;
+    font-size: 1.8em;
+    cursor: pointer;
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+    align-self: flex-start;
+}
+
+.titleContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+    text-transform: uppercase;
+}
+
+.title_1{
+    font-size: 18px;
+    margin: 12px 0 12px 3.5em;
+}
+
+.title_2{
+    font-size: 18px;
+    margin: 12px 3.5em 12px 0;
+}
+
+.alert{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-top: 3px solid #E67A2A;
+    border-radius: 5px 5px 10px 10px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    margin: 2.5em 0;
+    width: 76%;
+    height: 54px;
+}
+
+.icon_info{
+    color: #E67A2A;
+    font-size: 1.2em;
+    margin: 0 1.5em 0 1em;
+}
+
+.alertAdvise{
+    color: #E67A2A;
+    text-transform: uppercase;
+    font-size: .9em;
+}
+
+.subtotal{
+    font-size: 1rem;
+    text-align: right;
+    margin: 1.2rem 0;
+}
+
+.subtotal span{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.titlePrice{
+    color: #E67A2A;
+    text-align: right;
+    font-size: 30px;
+}
+
+.btn{
+    width: 100%;
+    background-color: #E67A2A;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    padding: 1rem;
+    font-size: 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 1.2px #E67A2A;
+}
+
+.transitionGroup{
+    width: 100%;
+}

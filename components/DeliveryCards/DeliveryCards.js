@@ -34,6 +34,7 @@ const DeliveryCards = (props) => {
                 sizes={props.cardData.size}
                 prices={props.cardData.value}
                 title={props.cardData.title}
+                url={props.cardData.image}
                 pathId={props.pathId}
             />
 

@@ -1,15 +1,20 @@
 import { useRouter } from 'next/router';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
+import Cart from './Cart/Cart';
 import classes from './Layout.module.css';
+import { useSelector } from 'react-redux';
 
 const Layout = (props) => {
     const router = useRouter();
     const path = router.pathname;
+    const cartIsVisible = useSelector(state => state.cartReducer.isVisible);
 
     return (
         <div className={classes.containerAll}>
             <Header path={path}/>
+            
+            {cartIsVisible && <Cart />}
 
             <main className={classes.mainContent}>
                 <section className={classes.sectionContent}>

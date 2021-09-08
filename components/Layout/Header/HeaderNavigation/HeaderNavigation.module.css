@@ -49,11 +49,42 @@
     padding: .65em 1em;
     margin: .5em .5em;
     color: #fff;
+    cursor: pointer;
 }
 
 .iconslink:focus {
     outline: none;
     box-shadow: 0 0 0 1px #fff;
+}
+
+.icon_cart{
+    position: relative;
+    padding: 2em 1em;
+    font-size: .6em;
+    margin: .5em .5em;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cartQuantity{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5%;
+    right: -10%;
+    width: 20px;
+    height: 20px;
+    background-color: #e67a2a;
+    border-radius: 50%;
+    font-size: 1.2em;
+}
+
+.subtotalPrice{
+    position: absolute;
+    bottom: -30%;
+    right: 0;
+    font-size: 13px;
 }
 
 @media screen and (min-width: 600px) {
