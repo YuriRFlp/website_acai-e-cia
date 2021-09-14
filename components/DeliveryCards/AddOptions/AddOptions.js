@@ -7,6 +7,8 @@ import classes from './AddOptions.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deliveryActions } from '../../../store/index';
 import { useEffect, Fragment } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const AddOptions = (props) => {
     const dispatch = useDispatch();
@@ -25,8 +27,7 @@ const AddOptions = (props) => {
     return(
         <div className={classes.checkboxContainer}>
             <button className={classes.btnExit} type="button" onClick={showAddOptionsHandler}>
-                <span className={classes.firstLine}></span>
-                <span className={classes.secondLine}></span>
+                <FontAwesomeIcon icon={faTimes} className={classes.icon_times} />
             </button>
 
             {!conditional && 

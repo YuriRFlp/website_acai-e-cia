@@ -58,6 +58,7 @@ const deliverySlice = createSlice({
                 state.alreadyCheckedAdds.splice(4);
             }
 
+            state.alreadyCheckedAdds = state.alreadyCheckedAdds.sort()
         },
 
         setAlreadyCheckedAdds(state){
@@ -164,11 +165,11 @@ const deliverySlice = createSlice({
                 state.alreadyCheckedAdds = [];
                 action.payload === 'barcas' && (state.addBarcasRule = '');
             } else if(action.payload === 'kids') {
-                state.alreadyCheckedAdds = ["banana", "leite em pó", "leite condensado", "confete", "tubetes"];
+                state.alreadyCheckedAdds = ["banana", "confete", "leite condensado", "leite em pó", "tubetes"];
             } else if(action.payload === 'cestinha') {
-                state.alreadyCheckedAdds = ["morango_gratis", "chocoball_gratis"];
+                state.alreadyCheckedAdds = ["chocoball (gratis)", "morango (gratis)"];
             } else if(action.payload === 'banana-split') {
-                state.alreadyCheckedAdds = ["confete_gratis", "chantilly_gratis"];
+                state.alreadyCheckedAdds = ["confete (gratis)", "chantilly (gratis)"];
             } else {
                 state.alreadyCheckedAdds = ["banana", "granola", "leite em pó"];
             }

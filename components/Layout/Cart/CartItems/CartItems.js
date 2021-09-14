@@ -1,7 +1,6 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../../../store';
 import classes from './CartItems.module.css';
 
@@ -9,7 +8,7 @@ const CartItems = (props) => {
     const dispatch = useDispatch();
 
     const subQuantityHandler = (event) => {
-        let id = event.target.parentNode.parentNode.lastChild.textContent;
+        let id = event.target.parentNode.parentNode.firstChild.lastChild.textContent;
         const currentQuantity = props.quantity - 1;
         currentQuantity === 0 
             ? dispatch(cartActions.updateItemsList({id, quantity: 1}))
@@ -17,7 +16,7 @@ const CartItems = (props) => {
     };
 
     const someQuantityHandler = (event) => {
-        const id = event.target.parentNode.parentNode.lastChild.textContent;
+        let id = event.target.parentNode.parentNode.firstChild.lastChild.textContent;
         const currentQuantity = props.quantity + 1;
         dispatch(cartActions.updateItemsList({id, quantity: currentQuantity}))
     };
@@ -25,7 +24,6 @@ const CartItems = (props) => {
     const deleteItemHandler = (event) => {
         let id = event.target.parentNode.parentNode.lastChild.textContent;
         id.includes('+') && (id = event.target.parentNode.lastChild.textContent);
-        console.log(id)
         dispatch(cartActions.deleteItem(id));
     };
 

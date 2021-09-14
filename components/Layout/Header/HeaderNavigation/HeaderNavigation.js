@@ -38,6 +38,10 @@ const HeaderNavigation = (props) => {
         window.addEventListener("scroll", handleScrollHandler);
         window.addEventListener("resize", handleResizeHandler);
         dispatch(menuActions.showMenu(window.innerWidth));
+        return () => {
+            window.removeEventListener("scroll", handleScrollHandler);
+            window.removeEventListener("resize", handleResizeHandler);
+        }
     }, []);
 
     let navigation = false;

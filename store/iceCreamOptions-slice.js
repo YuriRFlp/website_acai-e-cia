@@ -32,6 +32,8 @@ const iceCreamOptions = createSlice({
             } else {
                 state.iceCreamAlreadyChecked.push(action.payload);
             }
+
+            state.iceCreamAlreadyChecked = state.iceCreamAlreadyChecked.sort();
         },
 
         setAlreadyCheckedIceCreams(state){

@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     isVisible: false,
     isEmpty: true,
+    isMobile: null,
     items: [],
-    quantity: 0,
+    quantity:  0,
     subtotalPrice: 0,
     totalPrice: 0,
     freteValue: 0,
-    freteError: null,
     bairro: '',
     freteList: [
         {bairro: 'Centro', taxa: 2},
@@ -31,8 +31,22 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        startCart(state, action) {
+            const cartInfo = action.payload;
+            state.bairro = cartInfo.bairro;
+            state.freteValue = cartInfo.freteValue;
+            state.subtotalPrice = cartInfo.subtotalPrice;
+            state.totalPrice = cartInfo.totalPrice;
+            state.items = cartInfo.items;
+            state.quantity = cartInfo.items.length;
+        },
+
         showCart(state) {
             state.isVisible = !state.isVisible;
+        },
+
+        setIsMobile(state, action) {
+            action.payload < 750 ? state.isMobile = true : state.isMobile = false;
         },
 
         checkCartIsEmpty(state) {
@@ -40,8 +54,43 @@ const cartSlice = createSlice({
         },
 
         setItem(state, action) {
-            state.items.push(action.payload);
+            const newProduct = action.payload;
+            let hasOrder = false;
+            state.items.map( item => {
+                if (item.title === newProduct.title) {
+                    if (item.size === newProduct.size) {
+                        if (item.addList.length === newProduct.addList.length) {
+                            let equalAdds = true;
+                            if (item.addList.length > 0) {
+                                item.addList.map( (add, i) => {
+                                    add !== newProduct.addList[i] && (equalAdds = false);
+                                })
+                            }
+                            
+                            if (equalAdds) {
+                                if (item.flavor === newProduct.flavor) {
+                                    if (item.iceCreamList.length === newProduct.iceCreamList.length) {
+                                        let equalIceCreams = true;
+                                        if (item.iceCreamList.length > 0) {
+                                            item.iceCreamList.map( (iceCream, i) => {
+                                                iceCream !== newProduct.iceCreamList[i] && (equalIceCreams = false);
+                                            })
+                                        }
 
+                                        if (equalIceCreams) {
+                                            hasOrder = true;
+                                            item.quantity += 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+
+            !hasOrder && state.items.push(action.payload);
+            
             state.quantity = state.items.length;
 
             state.subtotalPrice = 0;
@@ -49,6 +98,15 @@ const cartSlice = createSlice({
                 state.subtotalPrice += (item.cardPrice * item.quantity);
             })
             state.totalPrice = state.subtotalPrice + state.freteValue;
+
+            const orderInfo = {
+                items: state.items,
+                subtotalPrice: state.subtotalPrice,
+                totalPrice: state.totalPrice,
+                bairro: state.bairro,
+                freteValue: state.freteValue
+            }
+            localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         },
 
         updateItemsList(state, action) {
@@ -65,6 +123,15 @@ const cartSlice = createSlice({
                 state.subtotalPrice += (item.cardPrice * item.quantity);
             })
             state.totalPrice = state.subtotalPrice + state.freteValue;
+
+            const orderInfo = {
+                items: state.items,
+                subtotalPrice: state.subtotalPrice,
+                totalPrice: state.totalPrice,
+                bairro: state.bairro,
+                freteValue: state.freteValue
+            }
+            localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         },
 
         deleteItem(state, action) {
@@ -82,6 +149,15 @@ const cartSlice = createSlice({
                 state.subtotalPrice += (item.cardPrice * item.quantity);
             })
             state.totalPrice = state.subtotalPrice + state.freteValue;
+
+            const orderInfo = {
+                items: state.items,
+                subtotalPrice: state.subtotalPrice,
+                totalPrice: state.totalPrice,
+                bairro: state.bairro,
+                freteValue: state.freteValue
+            }
+            localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         },
 
         resetItems(state) {
@@ -97,6 +173,14 @@ const cartSlice = createSlice({
         },
 
         setFreteValue(state, action) {
+            const orderInfo = {
+                items: state.items,
+                subtotalPrice: state.subtotalPrice,
+                totalPrice: state.totalPrice,
+                bairro: state.bairro,
+                freteValue: state.freteValue
+            }
+            
             if (action.payload !== '') {
                 state.freteList.map( frete => {
                     if(frete.bairro === action.payload) {
@@ -109,10 +193,19 @@ const cartSlice = createSlice({
                 state.bairro = '';
                 state.totalPrice = state.subtotalPrice + state.freteValue;
             }
+            localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         },
 
         setTotalPriceByFrete(state) {
             state.totalPrice = state.subtotalPrice + state.freteValue;
+            const orderInfo = {
+                items: state.items,
+                subtotalPrice: state.subtotalPrice,
+                totalPrice: state.totalPrice,
+                bairro: state.bairro,
+                freteValue: state.freteValue
+            }
+            localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         }
     }
 })
