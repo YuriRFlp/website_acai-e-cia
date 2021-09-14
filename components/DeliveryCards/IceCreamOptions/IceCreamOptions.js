@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { iceCreamOptionsActions } from '../../../store';
 import { useEffect } from 'react';
 import { Fragment } from 'react';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const IceCreamOptions = (props) => {
     const dispatch = useDispatch();
@@ -38,8 +40,7 @@ const IceCreamOptions = (props) => {
     return(
         <div className={classes.checkboxContainer}>
             <button className={classes.btnExit} type="button" onClick={showIceCreamMenuHandler}>
-                <span className={classes.firstLine}></span>
-                <span className={classes.secondLine}></span>
+                <FontAwesomeIcon icon={faTimes} className={classes.icon_times} />
             </button>
 
             <h2>Sorvetes</h2>

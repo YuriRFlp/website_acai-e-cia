@@ -1,15 +1,35 @@
 import { useRouter } from 'next/router';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
+import Cart from './Cart/Cart';
 import classes from './Layout.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../store';
+import { useEffect } from 'react';
 
 const Layout = (props) => {
+    const dispatch = useDispatch();
     const router = useRouter();
     const path = router.pathname;
+    const cartIsVisible = useSelector(state => state.cartReducer.isVisible);
+
+    useEffect( () => {
+        let cartInfo = {
+            items: [],
+            subtotalPrice: 0,
+            totalPrice: 0,
+            freteValue: 0,
+            bairro: ''
+        };
+        localStorage.getItem("cart_Acai&Cia") && (cartInfo = JSON.parse(localStorage.getItem("cart_Acai&Cia")));
+        dispatch(cartActions.startCart(cartInfo));
+    }, []);
 
     return (
         <div className={classes.containerAll}>
             <Header path={path}/>
+            
+            {cartIsVisible && <Cart />}
 
             <main className={classes.mainContent}>
                 <section className={classes.sectionContent}>

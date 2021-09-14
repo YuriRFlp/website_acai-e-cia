@@ -69,24 +69,9 @@
     padding: 5px 8px;
 }
 
-.btnExit:focus{
-    outline: none;
-}
-
-.btnExit span{
-    display: inline-block;
-    height: .7em;
-    margin-top: .5em;
-    outline: 2px solid #571e3e;
-}
-
-.firstLine{
-    transform: skew(40deg);
-}
-
-.secondLine{
-    transform: skew(-40deg);
-    margin-right: .5em;
+.icon_times{
+    color:#571e3e;
+    font-size: 1.5em;
 }
 
 .checkbox{

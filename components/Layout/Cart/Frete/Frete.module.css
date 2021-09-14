@@ -1,0 +1,61 @@
+.freteContainer{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    border-top: 1px solid #571e3e;
+    border-bottom: 1px solid #571e3e;
+    padding: 1.25rem 0;
+}
+
+.freteTitleContainer{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.icon_truck{
+    color: #571e3e;
+}
+
+.freteTitle{
+    margin: 0 .5rem 0 1rem;
+    color: #571e3e;
+    font-weight: 600;
+}
+
+.span{
+    font-size: .8rem;
+    color: #000;
+    font-weight: 500;
+}
+
+.input{
+    width: 100%;
+    border: none;
+    border: 1px solid #571e3e;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: .5rem;
+    color: #571e3e
+}
+
+.btn{
+    width: 50%;
+    border: none;
+    border-radius: 0 3.5px 3.5px 0;
+    background-color: #571e3e;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    cursor: pointer;
+}
+
+.input:focus, .btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 1.2px #571e3e;
+}
+
+@media screen and (min-width: 378px) {
+}

@@ -13,9 +13,19 @@ const FormDeliveryCard = (props) => {
     const flavor = useSelector(state => state.deliveryReducer.flavor);
     const iceCreamList = useSelector(state => state.iceCreamOptionsReducer.iceCreamAlreadyChecked);
     const addList = useSelector(state => state.deliveryReducer.alreadyCheckedAdds);
-    //Testando logica delivery-page
-    const cartItems = useSelector(state => state.cartReducer.items);
-    console.log(cartItems);
+    const items = useSelector(state => state.cartReducer.items);
+    const subtotalPrice = useSelector(state => state.cartReducer.subtotalPrice);
+    const totalPrice = useSelector(state => state.cartReducer.totalPrice);
+    const freteValue = useSelector(state => state.cartReducer.freteValue);
+    const bairroName = useSelector(state => state.cartReducer.bairro);
+
+    const orderInfo = {
+        items,
+        subtotalPrice,
+        totalPrice,
+        bairroName,
+        freteValue
+    };
 
     
     const showAddOptionsHandler = () => {
@@ -50,6 +60,7 @@ const FormDeliveryCard = (props) => {
 
     const addItemToCartHandler = () => {
         const order = {
+            id: items.length,
             title: props.title,
             description,
             addList,
@@ -57,6 +68,8 @@ const FormDeliveryCard = (props) => {
             size,
             flavor,
             cardPrice,
+            url: props.url,
+            quantity: 1
         }
 
         let validate = true;
