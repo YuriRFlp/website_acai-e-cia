@@ -3,6 +3,7 @@ import { faTimes, faExclamationTriangle, faExclamationCircle, faCheckCircle } fr
 import classes from './Alert.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertActions } from '../../../store';
+import { useEffect } from 'react';
 
 const Alert = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,16 @@ const Alert = () => {
     const closeAlertHandler = () => {
         dispatch(alertActions.closeAlert())
     };
+
+    useEffect( () => {
+        const timer = setTimeout(() => {
+            dispatch(alertActions.closeAlert());
+        }, 6000);
+
+        return () => {
+            clearTimeout(timer);
+        }
+    }, []);
 
     return(
         <div className={`

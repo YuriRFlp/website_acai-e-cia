@@ -26,6 +26,7 @@
 .icon{
     align-self: flex-end;
     margin: 1em;
+    cursor: pointer;
 }
 
 .content{

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faTimes, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faTimes, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import classes from './Cart.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertActions, cartActions } from '../../../store';
@@ -44,9 +44,6 @@ const Cart = () => {
                 title: 'Aviso',
                 message: 'Por favor, selecione um frete válido.'
             }))
-            setTimeout( () => {
-                dispatch(alertActions.closeAlert());
-            }, 6000)
         }
     }
 
@@ -73,7 +70,7 @@ const Cart = () => {
                     {isMobile
                         ?
                             <div className={classes.titleCarrinhoContainer} onClick={showCartHandler}>
-                                <FontAwesomeIcon icon={faAngleLeft} className={classes.icon_times} />
+                                <FontAwesomeIcon icon={faArrowLeft} className={classes.icon_arrow} />
                                 <h1 className={classes.titleCarrinho}>Carrinho de compras</h1>
                             </div>
                         : <FontAwesomeIcon icon={faTimes} className={classes.icon_times} onClick={showCartHandler} />

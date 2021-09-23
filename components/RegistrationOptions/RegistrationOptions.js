@@ -37,7 +37,7 @@ const RegistrationOptions = () => {
 
             <p className={classes.phrase}>Ou cadastre-se utilizando</p>
             
-            <Link href="/cadastro">
+            <Link href="/cadastro-pessoal">
                 <a className={classes.link}>Criar conta</a>
             </Link>
         </div>

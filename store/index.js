@@ -7,6 +7,7 @@ import iceCreamOptionsSlice from './iceCreamOptions-slice';
 import cartSlice from './cart-slice';
 import alertSlice from './alert-slice';
 import modalSlice from './modal-slice';
+import cadastroSlice from './cadastro-slice';
 
 const store = configureStore({
     reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
         cartReducer: cartSlice.reducer,
         alertReducer: alertSlice.reducer,
         modalReducer: modalSlice.reducer,
+        cadastroReducer: cadastroSlice.reducer,
     }
 });
 
@@ -29,5 +31,6 @@ export const iceCreamOptionsActions = iceCreamOptionsSlice.actions;
 export const cartActions = cartSlice.actions;
 export const alertActions = alertSlice.actions;
 export const modalActions = modalSlice.actions;
+export const cadastroActions = cadastroSlice.actions;
 
 export default store;

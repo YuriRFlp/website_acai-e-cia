@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     display: false,
-    title: '',
-    message: '',
     response: null,
 }
 
@@ -14,21 +12,20 @@ const modalSlice = createSlice({
         showModal(state, action) {
             state.title = action.payload.title;
             state.message = action.payload.message;
-
             state.display = true;
         },
 
         closeModal(state) {
             state.display = false;
+            state.response = false;
+            state.title = '';
+            state.message = '';
         },
 
         clickConfirm(state) {
             state.response = true;
+            state.display = false;
         },
-
-        clickCancel(state) {
-            state.response = false;
-        }
     }
 })
 

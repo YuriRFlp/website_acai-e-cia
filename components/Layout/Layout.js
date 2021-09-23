@@ -4,7 +4,7 @@ import Header from './Header/Header';
 import Cart from './Cart/Cart';
 import classes from './Layout.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store';
+import { cadastroActions, cartActions } from '../../store';
 import { useEffect } from 'react';
 
 const Layout = (props) => {
@@ -14,15 +14,14 @@ const Layout = (props) => {
     const cartIsVisible = useSelector(state => state.cartReducer.isVisible);
 
     useEffect( () => {
-        let cartInfo = {
-            items: [],
-            subtotalPrice: 0,
-            totalPrice: 0,
-            freteValue: 0,
-            bairro: ''
-        };
-        localStorage.getItem("cart_Acai&Cia") && (cartInfo = JSON.parse(localStorage.getItem("cart_Acai&Cia")));
-        dispatch(cartActions.startCart(cartInfo));
+        if (localStorage.getItem("cart_Acai&Cia")) {
+            const cartInfo = JSON.parse(localStorage.getItem("cart_Acai&Cia"));
+            dispatch(cartActions.startCart(cartInfo));
+        }
+        if(localStorage.getItem("info_user_Acai&Cia")) {
+            const userInfo = JSON.parse(localStorage.getItem("info_user_Acai&Cia"));
+            dispatch(cadastroActions.setPersonalStateByLocalStorage(userInfo));
+        }
     }, []);
 
     return (

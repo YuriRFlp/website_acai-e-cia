@@ -81,9 +81,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha um tamanho.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000)
+                    
                     validate = false;
                 }
             }
@@ -95,9 +93,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha o sabor do suco.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000)
+                    
                     validate = false;
                 }
             }
@@ -112,9 +108,6 @@ const FormDeliveryCard = (props) => {
                                     title: 'Aviso',
                                     message: 'Por favor, escolha os 4 adicionais inclusos na Barca 1/2 kg.'
                                 }))
-                                setTimeout( () => {
-                                    dispatch(alertActions.closeAlert());
-                                }, 6000);
                                 validate = false;
                             }
                             break;
@@ -125,9 +118,6 @@ const FormDeliveryCard = (props) => {
                                     title: 'Aviso',
                                     message: 'Por favor, escolha os 8 adicionais inclusos na Barca 1 kg.'
                                 }))
-                                setTimeout( () => {
-                                    dispatch(alertActions.closeAlert());
-                                }, 6000);
                                 validate = false;
                             }
                             break;
@@ -138,9 +128,6 @@ const FormDeliveryCard = (props) => {
                                     title: 'Aviso',
                                     message: 'Por favor, escolha os 6 adicionais inclusos na Barca Prêmio.'
                                 }))
-                                setTimeout( () => {
-                                    dispatch(alertActions.closeAlert());
-                                }, 6000);
                                 validate = false;
                             }
                             break;
@@ -152,9 +139,6 @@ const FormDeliveryCard = (props) => {
                             title: 'Aviso',
                             message: 'Por favor, escolha o sabor do sorvete.'
                         }))
-                        setTimeout( () => {
-                            dispatch(alertActions.closeAlert());
-                        }, 6000);
                         validate = false;
                     }
                 }
@@ -167,9 +151,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha o sabor do sorvete.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000);
+                    ;
                     validate = false;
                 } else if(item === "addList" && order[item].length < 2) {
                     dispatch(alertActions.showAlert({
@@ -177,9 +159,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha os 2 adicionais inclusos no Açaí Divino.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000);
+                    ;
                     validate = false;
                 }
             }
@@ -191,9 +171,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha o sabor do mix.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000)
+                    
                     validate = false;
                 }
             }
@@ -205,9 +183,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha os 4 adicionais inclusos no Duplex de açaí.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000)
+                    
                     validate = false;
                 }
             }
@@ -219,9 +195,7 @@ const FormDeliveryCard = (props) => {
                         title: 'Aviso',
                         message: 'Por favor, escolha os 6 adicionais inclusos na Roleta de açaí.'
                     }))
-                    setTimeout( () => {
-                        dispatch(alertActions.closeAlert());
-                    }, 6000)
+                    
                     validate = false;
                 }
             }
@@ -234,9 +208,6 @@ const FormDeliveryCard = (props) => {
                 title: 'Sucesso',
                 message: 'Pedido encaminhado para o carrinho.'
             }))
-            setTimeout( () => {
-                dispatch(alertActions.closeAlert());
-            }, 6000);
 
             dispatch(deliveryActions.resetCard(props.pathId));
             dispatch(iceCreamOptionsActions.resetCard());
