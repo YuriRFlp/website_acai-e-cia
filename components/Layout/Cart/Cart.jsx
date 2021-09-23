@@ -27,24 +27,14 @@ const Cart = () => {
     }
 
     const finishOrder = () => {
-        const freteValidate = (bairro !== '' && totalPrice !== subtotalPrice) ? true : false;
-
-        if (freteValidate) {
-            //dar o push para a pagina de finalização do pedido
-            console.log({
-                items,
-                subtotalPrice,
-                totalPrice,
-                freteValue,
-                bairro
-            })
-        } else {
-            dispatch(alertActions.showAlert({
-                type: 'warning',
-                title: 'Aviso',
-                message: 'Por favor, selecione um frete válido.'
-            }))
-        }
+        //dar o push para a pagina de finalização do pedido caso o usuario esteja logado e com email verificado
+        console.log({
+            items,
+            subtotalPrice,
+            totalPrice,
+            freteValue,
+            bairro
+        })
     }
 
     const handleResizeHandler = () => {

@@ -30,14 +30,14 @@
 
 .icon_times{
     color: #571e3e;
-    font-size: 1.8em;
+    font-size: 1.5em;
     cursor: pointer;
     margin-top: .5rem;
     margin-bottom: 1.5rem;
     align-self: flex-start;
 }
 
-.icon_times{
+.icon_arrow{
     color: #571e3e;
     font-size: 1.2em;
     cursor: pointer;

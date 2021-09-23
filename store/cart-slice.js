@@ -9,6 +9,7 @@ const initialState = {
     subtotalPrice: 0,
     totalPrice: 0,
     freteValue: 0,
+    freteError: null,
     bairro: '',
     freteList: [
         {bairro: 'Centro', taxa: 2},
@@ -180,19 +181,23 @@ const cartSlice = createSlice({
                 bairro: state.bairro,
                 freteValue: state.freteValue
             }
-            
+
             if (action.payload !== '') {
+                state.freteError = true;
                 state.freteList.map( frete => {
                     if(frete.bairro === action.payload) {
                        state.freteValue = frete.taxa;
                        state.bairro = frete.bairro;
+                       state.freteError = false;
                     }
                 })
             } else {
                 state.freteValue = 0;
                 state.bairro = '';
                 state.totalPrice = state.subtotalPrice + state.freteValue;
+                state.freteError = true;
             }
+            
             localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         },
 
@@ -206,7 +211,7 @@ const cartSlice = createSlice({
                 freteValue: state.freteValue
             }
             localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
-        }
+        } 
     }
 })
 
