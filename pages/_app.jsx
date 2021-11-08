@@ -12,7 +12,6 @@ import { useEffect } from 'react';
 library.add(fab, faWhatsapp, faGoogle);
 
 function MyApp({ Component, pageProps }) {
-  const serviceAccount = require("../acai-cia-delivery-38ea2cf7c009.json");
 
   const firebaseConfig = {
     apiKey: "AIzaSyAVze8y50gpGnINwXH5SZVcLpNNBXB9onk",
