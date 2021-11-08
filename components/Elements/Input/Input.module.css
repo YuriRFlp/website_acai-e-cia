@@ -1,0 +1,170 @@
+.inputContainer{
+    position: relative;
+    display: inline-block;
+    margin: 1.4em 0;
+    border: none;
+    box-shadow: 0 0 0 1px #5D1D3F;
+    border-radius: 10px;
+    height: 40px;
+    width: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+.inputContainerGenero{
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    height: 140px;
+    padding: .5em;
+    width: 100%;
+    margin: 1.4em 0;
+    box-shadow: 0 0 0 1px #5D1D3F;
+    border-radius: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+.phraseGenero{
+    position: absolute;
+    top: -12%;
+    left: 8%;
+    margin: 0;
+    padding: 0 .5em;
+    color: #5D1D3F;
+    font-weight: 500;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.inputContainerGenero .labelGenero:nth-child(2){
+    margin-top: 1em;
+
+}
+.inputContainerGenero .labelGenero:last-child{
+    display: flex;
+    align-items: center;
+}
+
+.labelGenero{
+    display: flex;
+    width: 100%;
+    margin: .5em 0;
+}
+
+.input{
+    width: 100%;
+    height: 100%;
+    padding-left: 1em;
+    border: none;
+    border-radius: 10px;
+}
+
+.input:focus, .others:focus, .inputContainerGenero:focus{
+    outline: none;
+    box-shadow: 0 0 0 1.5px #5D1D3F;
+}
+
+.label{
+    position: absolute;
+    top: -34%;
+    left: 8%;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    padding: 0 .5em;
+    background-color: #fff;
+    z-index: 1;
+    color: #5D1D3F;
+    font-weight: 500;
+}
+
+.inputRadio {
+    box-shadow: none;
+    width: .1px;
+    opacity: 0; 
+}
+
+.radioCustom{
+    display: inline-block;
+    border: 1px solid #5D1D3F;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: auto 5px auto -7px;
+}
+
+.inputRadio:focus ~ .radioCustom{
+    outline: none;
+    box-shadow: 0 0 0 1px #5D1D3F;
+    background-color: #ececec;
+}
+
+.inputRadio:checked ~ .radioCustom{
+    box-shadow: none;
+    background-color: #5d1d3fe7;
+    border: 2px solid #5D1D3F;
+}
+
+.others{
+    margin-top: .1em;
+    margin-left: 1em;
+    box-shadow: 0 0 0 1px #5D1D3F;
+    border: none;
+    width: calc(100% - 50px);
+    border-radius: 5px;
+    padding: .3em;
+}
+
+.hidden{
+    display: none;
+}
+
+.scc{
+    cursor: auto;
+}
+
+.invalid{
+    box-shadow: 0 0 0 1px #DB3E3E;
+    border-radius: 10px 10px 0 0;
+}
+
+.advise{
+    background-color: #DB3E3E;
+    color: #fff;
+    text-align: center;
+    padding: .2em 0;
+    font-size: 14px;
+    box-shadow: 0 0 0 1px #DB3E3E;
+    border-radius: 0 0 10px 10px;
+}
+
+.icon{
+    color: #5D1D3F;
+    position: absolute;
+    top: 34%;
+    right: 6%;
+    cursor: pointer;
+}
+
+.disabled{
+    background-color: rgb(230, 230, 230);
+}
+
+/* @media screen and (min-width: 600px) {
+    .inputContainer{
+        width: 45%; 
+        margin: 1.4em .5em;
+    }
+    
+    .inputContainerGenero{
+        width: 45%; 
+        margin: 1.4em .5em;
+    }
+} */

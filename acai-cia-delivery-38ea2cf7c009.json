@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "acai-cia-delivery",
+  "private_key_id": "38ea2cf7c0091445d68bd62130b7381cdbc52e19",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC89twFxUMdAiRZ\nJ05MfiJSnbVyjychYpDLHZO9WwlEAidQTCOZcDT4w93U7XTJeodQA5nf5dBCQSp3\n6KYHNxeuCJgEdY18/LsvIwFsM0udIx/0NZabcNiGff8PQikMrXPw7IBt0hn7vLMQ\nCrI7t5rRIvspPxwklD53kzph1stQ3LdCgKU5y0dVWU7AXb2XChhovFI2irHVpTpY\ns4LmsINWT2367M/spBZauFf9Sfy9BzDAUGZqrgSfumF+TqJMN463SjXwToSrwEWT\nFshaFhVl2EovUQFn3zE7Le/d2qXBEetUl/k1jcdlrtArduW3016CLXRvPXyZZ+xl\n8jbNvW1vAgMBAAECgf9XWts0lKQFp3fXcF4anA18/Gs9z1I9xCHc18Wl4WYOinor\n/VWLaA7tjwD0FZbd3B+KNm66zceqFGJcWybbzJJXExgf4+k/wPh4yCJMii7+HPnZ\n4YmgtKezDsczKQoMFzcVqVMYNq/gCNvSNgv0GTG9t9p3ypd87wssxezydU/DacjS\nqhZ5JwrHTNA/5oPWa0rz51dgWRjWl50uET1tjp/V0KZjGRckJ47OcJVsWI2B1BDy\nm7+L1BpCCgx9V8TJnBXEdoTbyMRuJD3lf07PJZkqY7IQlYN9I5BnFTsTdOJRhHq/\niRGViTyEt7BnHJ0FuTGXHY5yYKWtM6sOQtsqz60CgYEA4PIJ/WgVIVEDbG8NkhME\nukQdUAPOjERudlG4Ux+YxjDYcCQp22lrW1P7fqKCOyP5YNTlWdFSapuhqiP/Sj+4\nmd8wVMZbrQyQ+71yT+lrInqElGzgEp+JIeWdW1sRPkVcti6v5tCqbLggLfSD5Ohq\nVGIII1Md3mtY+jt0nupmwJsCgYEA1w0vDIYQYpFdVtqLADyyTcfYsbjwiSsNr6Mq\n3avo85/QS4ZFn+HJevcaBNSmsgZiLsAcQMM07PGRxW8YH8ZKUXWoRvffhIrU+rbX\nXJJLY2R9XBaIJEmg6CQo9azP+uW/oOWlPnrgFOxjVn5uWcqa6Cr1U7iDFfN7GzU1\npsTb4b0CgYEApZ/Q1zJRjIxX1vkVpt419ue8JXQIGqMwKhIVg66aECNa2YbnAtRl\n5YK6hA0nkl/0d+WJUU6cPj6FE/8ZMxQj2bfJoEHEsm+0OIbOqiQVa/eFsrtPaKbq\nk3i7Gc69rXnov4M0pOAy+4W+u9dzXZH66FKd51SFg4TKqMQqI/A2480CgYBM/1pu\nKH4rXJLH6z3DmvfYY4qRr37oDfM7hLdvYQLqX7kroWrCYQxLq7e0LRN2QFTdGknD\nYmFLyP6Ba1J+5fdsDS1wI4XzJeY10ktvyK2Xa756v1KFc5taIsBLnlFlKueeyzqM\nEWCz/SNgL6qBGcq2/9KQ5EqDDIdyaW3JRUjZHQKBgQCdqmf/p5Vh7FLXJogesDpD\nbAcEYvfUoUpJho2vOylr6pmAbUKlSCHEBR3Kdxq10ePenR5wDrB8V0hmiJGOdy0a\nxAdNNHDhOwGoWgAoa0McFix4dEljWl5Ar17cuQOCEGrJEry1KWVAV5dOdYvaG3Y/\nQDHQBU+l0TC4/2Q+cjiBfA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-sgbjl@acai-cia-delivery.iam.gserviceaccount.com",
+  "client_id": "112639388463314342639",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-sgbjl%40acai-cia-delivery.iam.gserviceaccount.com"
+}

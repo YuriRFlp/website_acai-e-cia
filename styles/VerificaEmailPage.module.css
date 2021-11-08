@@ -1,0 +1,92 @@
+.container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #571e3e;
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    padding-bottom: 5em;
+}
+
+.content{
+    width: 340px;
+}
+
+.logo{
+    height: 75.5px;
+    width: 145.5px;
+    margin: 4.5em 0 2em 0;
+}
+
+.title{
+    font-size: 36px;
+}
+
+.text{
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+}
+.secondText{
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+    margin-top: 2em;
+}
+
+.text span{
+    font-weight: 600;
+}
+
+.btn{
+    background-color: #E67A2A;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;     
+    border: none;
+    border-radius: 10px;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+.btnOutline{
+    background-color: #571e3e;
+    color: #E67A2A;
+    border: 1px solid #E67A2A;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+
+.btnOutline:hover, .btnOutline:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #E67A2A;
+}
+.btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #E67A2A;
+}
+.btn:hover{
+    background-color: #e67c2af1;
+}
+
+.input{
+    width: 100%;
+    height: 41.66px;
+    padding-left: 1em;
+    border: 1px solid #571e3e;
+    border-radius: 10px;
+    margin: 1em 0;
+}
+.input:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e;
+}

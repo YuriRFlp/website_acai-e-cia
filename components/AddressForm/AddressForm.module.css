@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-flow: column;
+    margin-top: 2em;
+    padding: 0 .8em;
+}
+
+.btn{
+    align-self: flex-end;
+    background-color: #571e3e;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;     
+    border: none;
+    border-radius: 10px;
+    padding: 1em 0;
+    margin: 3em auto 4em auto;
+    text-decoration: none;
+}
+
+.btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e;
+}
+
+/* @media screen and (min-width: 600px) {
+    .container{
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 0;
+    }
+} */
+
+@media screen and (min-width: 48em){
+    .container{
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 0;
+    }
+    
+    .inputContainer{
+        display: inline-block;
+        width: 45%; 
+    }
+
+    .btn{
+        width: 60%;
+    }
+}

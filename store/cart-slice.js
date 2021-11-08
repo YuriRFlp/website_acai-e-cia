@@ -9,22 +9,26 @@ const initialState = {
     subtotalPrice: 0,
     totalPrice: 0,
     freteValue: 0,
+    freteError: null,
     bairro: '',
     freteList: [
-        {bairro: 'Centro', taxa: 2},
-        {bairro: 'Vila Duarte', taxa: 2},
-        {bairro: 'Bom Jardim', taxa: 2},
-        {bairro: 'Jatobá', taxa: 3},
-        {bairro: 'Matadouro', taxa: 2},
-        {bairro: 'Matinha', taxa: 3},
-        {bairro: 'Cortesia', taxa: 2},
-        {bairro: 'Rosário', taxa: 2},
-        {bairro: 'Condomínio Canto das Águas', taxa: 5},
-        {bairro: 'Condomínio Trilhas do Ouro', taxa: 4},
-        {bairro: "Coxo D'água", taxa: 4},
-        {bairro: 'Morgan', taxa: 3},
-        {bairro: 'Labareda', taxa: 3},
-    ]
+        {cidade: 'RA', bairro: 'Bom Jardim', taxa: 2},
+        {cidade: 'RA', bairro: 'Cementeira', taxa: 3},
+        {cidade: 'RA', bairro: 'Centro', taxa: 2},
+        {cidade: 'RA', bairro: 'Condomínio Canto das Águas', taxa: 5},
+        {cidade: 'RA', bairro: 'Condomínio Trilhas do Ouro', taxa: 4},
+        {cidade: 'RA', bairro: 'Cortesia', taxa: 2},
+        {cidade: 'RA', bairro: 'Jatobá', taxa: 3},
+        {cidade: 'RA', bairro: 'Labareda', taxa: 3},
+        {cidade: 'RA', bairro: 'Matadouro', taxa: 2},
+        {cidade: 'RA', bairro: 'Matinha', taxa: 3},
+        {cidade: 'RA', bairro: 'Morgan', taxa: 3},
+        {cidade: 'RA', bairro: 'Rosário', taxa: 2},
+        {cidade: 'RA', bairro: 'Nossa Senhora do Carmo', taxa: 3},
+        {cidade: 'RA', bairro: 'Vila Duarte', taxa: 2},
+        {cidade: 'NL', bairro: 'Honório Bicalho', taxa: 4},
+        {cidade: 'NL', bairro: 'Santa Rita', taxa: 3}
+    ] 
 }
 
 const cartSlice = createSlice({
@@ -180,19 +184,23 @@ const cartSlice = createSlice({
                 bairro: state.bairro,
                 freteValue: state.freteValue
             }
-            
+
             if (action.payload !== '') {
+                state.freteError = true;
                 state.freteList.map( frete => {
                     if(frete.bairro === action.payload) {
                        state.freteValue = frete.taxa;
                        state.bairro = frete.bairro;
+                       state.freteError = false;
                     }
                 })
             } else {
                 state.freteValue = 0;
                 state.bairro = '';
                 state.totalPrice = state.subtotalPrice + state.freteValue;
+                state.freteError = true;
             }
+            
             localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
         },
 
@@ -206,7 +214,7 @@ const cartSlice = createSlice({
                 freteValue: state.freteValue
             }
             localStorage.setItem("cart_Acai&Cia", JSON.stringify(orderInfo));
-        }
+        } 
     }
 })
 

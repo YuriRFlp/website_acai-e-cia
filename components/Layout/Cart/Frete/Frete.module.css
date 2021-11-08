@@ -28,6 +28,11 @@
     font-size: .8rem;
     color: #000;
     font-weight: 500;
+    text-align: left;
+}
+
+.inputContainer{
+    display: flex;
 }
 
 .input{
@@ -35,7 +40,7 @@
     border: none;
     border: 1px solid #571e3e;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
     padding-left: .5rem;
     color: #571e3e
 }
@@ -54,8 +59,8 @@
 
 .input:focus, .btn:focus{
     outline: none;
-    box-shadow: 0 0 0 1.2px #571e3e;
+    box-shadow: 0 0 0 .5px #571e3e;
 }
 
-@media screen and (min-width: 378px) {
-}
+/* @media screen and (min-width: 378px) {
+} */
