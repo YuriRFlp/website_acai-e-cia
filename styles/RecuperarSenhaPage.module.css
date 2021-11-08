@@ -5,12 +5,14 @@
 }
 
 .section{
-    margin: 2em 0 6em 0;
+    margin: 2em auto 6em auto;
+    width: 70vw;
 }
 
 .phrase{
     margin-top: 2em;
     line-height: 1.5;
+    text-align: left;
 }
 
 .span{
@@ -18,9 +20,42 @@
     color: #571e3e;
 }
 
+.form{
+    text-align: left;
+    margin: 2em auto;
+    width: 70vw;
+}
+
+.btnRegistration{
+    background-color: #571e3e;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    margin: 4em 0 3em 0;
+    height: 3em;
+}
+
+.btnRegistration:hover{
+    background-color: rgba(87, 30, 62, 0.9);
+}
+
+.btnRegistration:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #571e3e;
+}
+
 @media screen and (min-width: 64em){
     .phrase{
-        width: 60%;
+        width: 25vw;
         margin: 2em auto 0 auto;
+    }
+
+    .form{
+        width: 25vw;
+        margin: 2em auto;
     }
 }

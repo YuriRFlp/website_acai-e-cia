@@ -96,6 +96,35 @@ const Input = (props) => {
                     }
                 </div>
             }
+            {props.type === 'datalist' &&
+                <div className={classes.inputContainer}>
+                    <label htmlFor={props.id} className={classes.label}>{props.label}</label>
+                    <input 
+                        id={props.id}
+                        type="text" 
+                        list="fretes" 
+                        placeholder={props.placeholder}
+                        value={props.value}
+                        className={`${classes.input} ${props.isEmpty ? classes.invalid : ''} ${props.disabled ? classes.disabled : ''}`}
+                        onChange={props.onChange}
+                        onBlur={props.onBlur}
+                        onFocus={props.onFocus}
+                        disabled={props.disabled}
+                    />
+                    <datalist id="fretes">
+                        {props.list.map( frete => {
+                            return(
+                                <option key={frete.bairro}>{frete.bairro}</option>
+                            )
+                        })}
+                    </datalist>
+                    {props.isEmpty && 
+                        <div className={classes.advise}>
+                            Campo {props.label.toLowerCase()} é requerido.
+                        </div>
+                    }
+                </div>
+            }
             {props.type === 'cpf' &&
                 <div className={classes.inputContainer}>
                     <label htmlFor={props.id} className={classes.label}>{props.label}</label>
@@ -236,11 +265,12 @@ const Input = (props) => {
                     <label htmlFor={props.id} className={classes.label}>{props.label}</label>
                     <select
                         id={props.id}
-                        className={`${classes.input} ${props.isEmpty ? classes.invalid : ''}`}
+                        className={`${classes.input} ${props.isEmpty ? classes.invalid : ''} ${props.disabled ? classes.disabled : ''}`}
                         defaultValue={props.value} 
                         onChange={props.onChange}
                         onBlur={props.onBlur}
                         onFocus={props.onFocus}
+                        disabled={props.disabled}
                     >
                         <option disabled value=''>Selecione um item</option>
                         {props.data.map( (item, index) => {
@@ -267,7 +297,7 @@ const Input = (props) => {
                         value={props.value}
                         readOnly
                         disabled
-                        className={`${classes.input} ${classes.scc}`}
+                        className={`${classes.input} ${classes.scc} ${classes.disabled}`}
                     />
                 </div>
             }

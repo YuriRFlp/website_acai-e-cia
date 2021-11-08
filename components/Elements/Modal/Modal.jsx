@@ -3,14 +3,18 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import classes from './Modal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../../store';
+import { Fragment } from 'react';
 
 const Modal = (props) => {
     const dispatch = useDispatch();
     const title = useSelector(state => state.modalReducer.title);
     const message = useSelector(state => state.modalReducer.message);
+    const twoOptions = useSelector(state => state.modalReducer.twoOptions);
+    const confirmFunction = useSelector(state => state.modalReducer.confirmFunction);
 
     const confirmModalHandler = () => {
-        dispatch(modalActions.clickConfirm());
+        confirmFunction();
+        dispatch(modalActions.closeModal());
     };
 
     const closeModalHandler = () => {
@@ -18,14 +22,15 @@ const Modal = (props) => {
     };
 
     return(
-        <div className={classes.background}>
+        <Fragment>
+            <div className={classes.background} onClick={closeModalHandler}></div>
             <div className={classes.container}>
                 <FontAwesomeIcon icon={faTimes} className={classes.icon} onClick={closeModalHandler} />
                 <div className={classes.content}>
                     <h1 className={classes.title}>{title}</h1>
                     <p className={classes.text}>{message}</p>
                 </div>
-                {props.twoOptions 
+                {twoOptions 
                     ? 
                         <div className={classes.buttonContainer}>
                             <button 
@@ -50,12 +55,12 @@ const Modal = (props) => {
                                 onClick={closeModalHandler} 
                                 className={classes.btnConfirm}
                             >
-                               Ok
+                            Ok
                             </button>
                         </div>   
                 }
             </div>
-        </div>
+        </Fragment>
     )
 }
 

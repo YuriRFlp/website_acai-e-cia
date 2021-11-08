@@ -9,24 +9,26 @@
 }
 
 .container{
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-flow: column;
     background-color: #fff;
-    width: 50vw;
+    width: 80%;
     height: 300px;
     overflow: auto;
     border-radius: 10px;
     padding: 1em 2em;
+    z-index: 99999999999 !important;
 }
 
 .icon{
     align-self: flex-end;
     margin: 1em;
     cursor: pointer;
+    font-size: 1.25em;
 }
 
 .content{
@@ -73,4 +75,10 @@
 
 .btnConfirm:hover{
     background-color: #571e3ef3;
+}
+
+@media screen and (min-width: 670px) {
+    .container{
+        width: 50%;
+    }
 }

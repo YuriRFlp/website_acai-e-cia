@@ -8,11 +8,9 @@ import { Fragment } from 'react';
 import CartItems from './CartItems/CartItems';
 import Frete from './Frete/Frete';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Alert from '../../Elements/Alert/Alert';
 
 const Cart = () => {
     const dispatch = useDispatch();
-    const alertDisplay = useSelector(state => state.alertReducer.display);
     const cartIsVisible = useSelector( state => state.cartReducer.isVisible);
     const cartIsEmpty = useSelector( state => state.cartReducer.isEmpty);
     const items = useSelector(state => state.cartReducer.items);
@@ -114,8 +112,6 @@ const Cart = () => {
                                 <button type="button" className={classes.btn} onClick={finishOrder}>Finalizar pedido</button>
                             </TransitionGroup>
                     }
-
-                    {alertDisplay && <Alert />}
                 </div>
             </CSSTransition>
         </Fragment>

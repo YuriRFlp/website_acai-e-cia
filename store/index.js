@@ -8,6 +8,7 @@ import cartSlice from './cart-slice';
 import alertSlice from './alert-slice';
 import modalSlice from './modal-slice';
 import cadastroSlice from './cadastro-slice';
+import loaderSlice from './loader-slice';
 
 const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
         alertReducer: alertSlice.reducer,
         modalReducer: modalSlice.reducer,
         cadastroReducer: cadastroSlice.reducer,
+        loaderReducer: loaderSlice.reducer,
     }
 });
 
@@ -32,5 +34,6 @@ export const cartActions = cartSlice.actions;
 export const alertActions = alertSlice.actions;
 export const modalActions = modalSlice.actions;
 export const cadastroActions = cadastroSlice.actions;
+export const loaderActions = loaderSlice.actions;
 
 export default store;

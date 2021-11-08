@@ -1,14 +1,14 @@
-import { faFacebookSquare, faGooglePlusSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faFacebookSquare, faGooglePlusSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import classes from './RegistrationOptions.module.css';
 
 const RegistrationOptions = () => {
     return(
         <div className={classes.registration}>
-            <p className={classes.phrase}>Ou cadastre-se utilizando</p>
+            {/* <p className={classes.phrase}>Ou cadastre-se utilizando</p> */}
 
-            <div className={classes.iconsContainer}>
+            {/* <div className={classes.iconsContainer}>
 
                 <div>
                     <Link href="#">
@@ -33,7 +33,7 @@ const RegistrationOptions = () => {
                         </a>
                     </Link>
                 </div>
-            </div>
+            </div> */}
 
             <p className={classes.phrase}>Ou cadastre-se utilizando</p>
             

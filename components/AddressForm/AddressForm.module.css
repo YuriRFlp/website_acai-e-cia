@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: column;
     margin-top: 2em;
-    padding: 0 .5em;
+    padding: 0 .8em;
 }
 
 .btn{
@@ -25,15 +25,26 @@
     box-shadow: 0 0 0 1px #571e3e;
 }
 
-@media screen and (min-width: 600px) {
+/* @media screen and (min-width: 600px) {
     .container{
         flex-flow: row wrap;
         justify-content: space-between;
         padding: 0;
     }
-}
+} */
 
 @media screen and (min-width: 48em){
+    .container{
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 0;
+    }
+    
+    .inputContainer{
+        display: inline-block;
+        width: 45%; 
+    }
+
     .btn{
         width: 60%;
     }

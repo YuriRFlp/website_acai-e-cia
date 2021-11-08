@@ -153,14 +153,18 @@
     cursor: pointer;
 }
 
-@media screen and (min-width: 600px) {
+.disabled{
+    background-color: rgb(230, 230, 230);
+}
+
+/* @media screen and (min-width: 600px) {
     .inputContainer{
-        width: 45%;
+        width: 45%; 
         margin: 1.4em .5em;
     }
     
     .inputContainerGenero{
-        width: 45%;
+        width: 45%; 
         margin: 1.4em .5em;
     }
-}
+} */

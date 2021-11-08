@@ -21,8 +21,21 @@ const isEmail = (email) => {
     return test;
 }
 
+const isBirthday = (date) => {
+    const year = new Date().getFullYear();
+    let yearValidate = false;
+    if(date.split('/')[2] && date.split('/')[2].length === 4) {
+        if (Number(date.split('/')[2]) > (year - 110) && Number(date.split('/')[2]) <= year) {
+            yearValidate = true;
+        }
+    }
+    const monthValidate = Number(date.split('/')[1]) <= 12;
+    const dayValidate = Number(date.split('/')[0]) <= 31;
+    const fullDateValidate = date.length === 10 ? true : false;
+    const birthdayValidate = (yearValidate && monthValidate && dayValidate && fullDateValidate) ? true : false;
+    return birthdayValidate;
+}
 
 
 
-
-export { isEmpty, isEmail }
+export { isEmpty, isEmail, isBirthday }

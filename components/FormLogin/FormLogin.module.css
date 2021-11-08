@@ -1,7 +1,6 @@
-.form{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1em;
+.container{
+    display: flex;
+    flex-flow: column;
     width: 80%;
     margin: 1.5em auto;
     text-align: left;
@@ -82,10 +81,4 @@
 .btnLogin:focus{
     outline: none;
     box-shadow: 0 0 0 1px #571e3e;
-}
-
-@media screen and (min-width: 48em) {
-    .form {
-      grid-area: 2/1/3/2; 
-    }
 }
