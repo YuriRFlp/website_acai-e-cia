@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { cadastroActions, alertActions, loaderActions } from '../../store';
 import classes from './FormPassword.module.css';
 import Input from '../Elements/Input/Input';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { isEmail, isEmpty } from '../../services/validate';
 
@@ -34,7 +33,7 @@ const FormPassword = () => {
         const validate = isEmpty({email});
         if (validate && emailValidate) {
             const auth = getAuth();
-            sendPasswordResetEmail(auth, email)
+            sendPasswordResetEmail(auth, email, { url: 'http://localhost:3000/login' })
             .then(() => {
                 dispatch(alertActions.showAlert({
                     type: 'success',

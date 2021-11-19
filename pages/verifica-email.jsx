@@ -1,5 +1,4 @@
 import { getAuth, sendEmailVerification, updateEmail } from '@firebase/auth';
-import { getDatabase, ref, update } from 'firebase/database';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -24,11 +23,10 @@ const VerificaEmailPage = () => {
 
     const onSendEmailHandler = async (event) => {
         dispatch(loaderActions.open());
-        const database = getDatabase();
         const auth = getAuth();
         const text = event.target.textContent;
         if (text.includes("link")) {
-            sendEmailVerification(auth.currentUser)
+            sendEmailVerification(auth.currentUser,  { url: 'http://localhost:3000/confirma-email' })
             .then(() => {
                 dispatch(alertActions.showAlert({
                     type: 'success',
@@ -51,9 +49,7 @@ const VerificaEmailPage = () => {
                 const user = auth.currentUser;
                 if(user != null) {
                     updateEmail(user, emailChanged).then(() => {
-                        const userRef = ref(database, `usuarios/${user.uid}/dados_pessoais`);
-                        update(userRef, { 'email': emailChanged });
-                        sendEmailVerification(auth.currentUser)
+                        sendEmailVerification(auth.currentUser, { url: 'http://localhost:3000/confirma-email' })
                         .then(() => {
                             dispatch(alertActions.showAlert({
                                 type: 'success',
@@ -83,6 +79,13 @@ const VerificaEmailPage = () => {
                             }))
                             localStorage.clear();
                             router.push('/login');
+                            dispatch(loaderActions.close());
+                        } else if (e.message.includes("email-already-in-use")) {
+                            dispatch(alertActions.showAlert({
+                                type: 'danger',
+                                title: 'Erro',
+                                message: `O link de verificação não foi encaminhado. Este email já está em uso!`
+                            }))
                             dispatch(loaderActions.close());
                         } else {
                             dispatch(alertActions.showAlert({

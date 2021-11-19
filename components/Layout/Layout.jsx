@@ -31,10 +31,7 @@ const Layout = (props) => {
         }
         
         if (mode) {
-            if (mode.includes('resetPassword')) {
-                localStorage.setItem('email_resetPassword', JSON.stringify(router.asPath.split('&')[0].split('=')[1]));
-                router.push('/nova-senha');
-            } else if( mode.includes('verifyEmail')) {
+            if( mode.includes('verifyEmail')) {
                 router.push('/confirma-email')
             }
         }

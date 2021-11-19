@@ -2,15 +2,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faTimes, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import classes from './Cart.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { alertActions, cartActions } from '../../../store';
+import { cartActions } from '../../../store';
 import { useEffect } from 'react';
 import { Fragment } from 'react';
 import CartItems from './CartItems/CartItems';
 import Frete from './Frete/Frete';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { useRouter } from 'next/router';
 
 const Cart = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const cartIsVisible = useSelector( state => state.cartReducer.isVisible);
     const cartIsEmpty = useSelector( state => state.cartReducer.isEmpty);
     const items = useSelector(state => state.cartReducer.items);
@@ -25,14 +27,12 @@ const Cart = () => {
     }
 
     const finishOrder = () => {
-        //dar o push para a pagina de finalização do pedido caso o usuario esteja logado e com email verificado
-        console.log({
-            items,
-            subtotalPrice,
-            totalPrice,
-            freteValue,
-            bairro
-        })
+        if (localStorage.getItem("token_Acai&Cia")) {
+            const info = JSON.parse(localStorage.getItem("info_Acai&Cia"));
+            info.email_verified ? router.push('/finalizar-pedido') : router.push('/verifica-email');
+        } else {
+            router.push('/');
+        }
     }
 
     const handleResizeHandler = () => {

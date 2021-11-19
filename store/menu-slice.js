@@ -6,6 +6,8 @@ const initialState = {
     scroll: false,
     cardapioLink: false,
     deliveryLink: false,
+    token: null,
+    hasSubmenu: false,
 };
 
 const menuSlice = createSlice({
@@ -59,6 +61,14 @@ const menuSlice = createSlice({
                 state.cardapioLink = false;
                 state.deliveryLink = false;
             }
+        },
+
+        setToken(state) {
+            state.token = localStorage.getItem("token_Acai&Cia") ? true : false;
+        },
+
+        showSubmenu(state) {
+            state.hasSubmenu = !state.hasSubmenu;
         }
     }
 });

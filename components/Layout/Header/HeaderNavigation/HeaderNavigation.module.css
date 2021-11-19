@@ -57,6 +57,10 @@
     box-shadow: 0 0 0 1px #fff;
 }
 
+.icon{
+    font-size: 2.3em;
+}
+
 .icon_cart{
     position: relative;
     padding: 2em 1em;
@@ -87,6 +91,53 @@
     font-size: 13px;
 }
 
+.logoutContainer{
+    display: inline-block;
+    /* position: relative; */
+}
+
+.submenuContainer{
+    position: absolute;
+    top: 4.789375rem;
+    right: 0;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 10px 0 0 10px;
+    text-align: left;
+    font-size: .9rem;
+    font-weight: 500;
+    box-shadow: -1px 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+.submenuContainer li{
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.8);
+    padding: .5rem .7rem;
+    cursor: pointer;
+}
+.submenuContainer li:hover{
+    color: #571e3e;
+}
+.submenuContainer li:first-child{
+    border-bottom: 1px solid #ccc;
+}
+
+.link{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+.submenuContainer li:hover .link{
+    color: #571e3e;
+}
+
+.icon_signOut{
+    font-size: 1.2rem;
+    margin-right: .5rem;
+}
+
 @media screen and (min-width: 600px) {
     .menuNavigation{
         grid-template-columns: 125.5px 1fr 100px 110px;
@@ -105,6 +156,10 @@
         font-size: .7em;
         padding: .5em 1em;
         margin: .5em .2em;
+    }
+
+    .submenuContainer{
+        top: 5.96875rem;
     }
 }
 

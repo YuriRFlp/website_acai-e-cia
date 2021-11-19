@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { decodeJwt } from '../../services/util';
-import { alertActions, cadastroActions, loaderActions } from '../../store';
+import { alertActions, cadastroActions, loaderActions, menuActions } from '../../store';
 import Input from '../Elements/Input/Input';
 import classes from './FormLogin.module.css';
 import { useRouter } from 'next/router';
@@ -49,6 +49,7 @@ const FormLogin = () => {
                 localStorage.setItem("token_Acai&Cia", JSON.stringify(token));
                 const decoded = decodeJwt(token);
                 localStorage.setItem("info_Acai&Cia", JSON.stringify(decoded));
+                dispatch(menuActions.setToken());
                 if (user.emailVerified) {
                     router.push('/');
                 } else {

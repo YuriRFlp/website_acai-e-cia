@@ -59,3 +59,24 @@ body {
   opacity: 0;
   transition: opacity .3s ease-in-out;
 }
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #571e3e transparent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  scroll-behavior: smooth !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(204, 204, 204, 0.466);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #571e3e;
+  border-radius: 20px !important;
+}

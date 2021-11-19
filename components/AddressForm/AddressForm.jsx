@@ -24,7 +24,13 @@ const AddressForm = () => {
         const numberValidate = addressState.numero.includes('e') ? false : true;
         if (validate && numberValidate) {
             const data = {
-                dados_pessoais: personalState,
+                dados_pessoais: {
+                    nome: personalState.nome,
+                    aniversario: personalState.aniversario,
+                    celular: personalState.celular,
+                    cpf: personalState.cpf,
+                    genero: personalState.genero
+                },
                 dados_endereco: addressState,
             }
             const auth = getAuth();
@@ -40,7 +46,7 @@ const AddressForm = () => {
                 localStorage.setItem("emailNotVerified_Acai&Cia", JSON.stringify(decoded.email));
             })
             .then(() => {
-                sendEmailVerification(auth.currentUser);
+                sendEmailVerification(auth.currentUser, { url: 'http://localhost:3000/confirma-email' });
                 dispatch(modalActions.showModal({
                     title: 'Sucesso!',
                     message: 'Cadastro realizado com sucesso.'

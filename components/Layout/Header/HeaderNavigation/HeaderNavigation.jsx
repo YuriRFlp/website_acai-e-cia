@@ -1,11 +1,14 @@
 import Nav from './Nav/Nav';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSignInAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { menuActions, cartActions } from '../../../../store/index';
+import { faBars, faSignInAlt, faShoppingCart, faUserCircle, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { menuActions, cartActions, alertActions, loaderActions } from '../../../../store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import classes from './HeaderNavigation.module.css';
+import { CSSTransition } from 'react-transition-group';
+import { getAuth, signOut } from "firebase/auth";
+import router from 'next/router';
 
 
 const HeaderNavigation = (props) => {
@@ -15,6 +18,8 @@ const HeaderNavigation = (props) => {
     const currentWidth = useSelector( state => state.menuReducer.windowWidth);
     const cartQuantity = useSelector( state => state.cartReducer.quantity);
     const subtotalPrice = useSelector( state => state.cartReducer.subtotalPrice);
+    const token = useSelector( state => state.menuReducer.token);
+    const hasSubmenu = useSelector( state => state.menuReducer.hasSubmenu);
 
     const toggleMenuHandler = () => {
         dispatch(menuActions.toggleMenu());
@@ -34,10 +39,33 @@ const HeaderNavigation = (props) => {
         dispatch(cartActions.showCart());
     }
 
+    const showSubmenuHandler = () => {
+        dispatch(menuActions.showSubmenu())
+    }
+
+    const logout = () => {
+        dispatch(loaderActions.open());
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            dispatch(menuActions.showSubmenu())
+            localStorage.clear();
+            dispatch(menuActions.setToken());
+            router.push('/login');
+        }).catch((error) => {
+            dispatch(alertActions.showAlert({
+                type: 'danger',
+                title: 'Erro',
+                message: error
+            }))
+        });
+        dispatch(loaderActions.close());
+    }
+
     useEffect( () => {
         window.addEventListener("scroll", handleScrollHandler);
         window.addEventListener("resize", handleResizeHandler);
         dispatch(menuActions.showMenu(window.innerWidth));
+        dispatch(menuActions.setToken());
         return () => {
             window.removeEventListener("scroll", handleScrollHandler);
             window.removeEventListener("resize", handleResizeHandler);
@@ -45,7 +73,6 @@ const HeaderNavigation = (props) => {
     }, []);
 
     let navigation = false;
-
     if(currentWidth > 1023){
         navigation = true;
     }else if(hasNav){
@@ -71,11 +98,36 @@ const HeaderNavigation = (props) => {
             {navigation && <Nav path={props.path}/>}
 
             <div className={classes.iconsContainer}>
-                <Link href="/login">
-                    <a className={classes.iconsLink}>
-                        <FontAwesomeIcon icon={faSignInAlt} size="2x" />
-                    </a>
-                </Link>
+                {token
+                    ?
+                        <div className={classes.logoutContainer}>
+                            <span className={classes.iconsLink} onClick={showSubmenuHandler}>
+                                <FontAwesomeIcon icon={faUserCircle} className={classes.icon} title="Conta" />
+                            </span>
+                            {hasSubmenu &&
+                                <CSSTransition in={hasSubmenu} appear={true} timeout={300} classNames="fadeInLeft">
+                                    <ul className={classes.submenuContainer}>
+                                        <li>
+                                            <FontAwesomeIcon icon={faUser} className={classes.icon_signOut} />
+                                            <Link href="/perfil">
+                                                <a className={classes.link}>Meu perfil</a>
+                                            </Link>
+                                        </li>
+                                        <li onClick={logout}>
+                                            <FontAwesomeIcon icon={faSignOutAlt} className={classes.icon_signOut} />
+                                            Sair
+                                        </li>
+                                    </ul>
+                                </CSSTransition>
+                            }
+                        </div>
+                    :
+                        <Link href="/login">
+                            <a className={classes.iconsLink}>
+                                <FontAwesomeIcon icon={faSignInAlt} size="2x" title="Login"/>
+                            </a>
+                        </Link>
+                }
 
                 <span className={classes.icon_cart} onClick={showCartHandler}>
                     <FontAwesomeIcon icon={faShoppingCart} size="2x" />
